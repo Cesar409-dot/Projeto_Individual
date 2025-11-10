@@ -21,7 +21,6 @@ body{
     background-color: var(--cor-um-fundo);
 }
 
-/* NAVBAR */
 .navbar {
     background-color: rgba(0, 0, 0, 0.378);
     display: flex;
@@ -35,6 +34,13 @@ body{
     top:0;
     z-index: 10;
 }
+
+.navbar img {
+    width: 130px;
+    height: 100px;
+    justify-self: start;
+}
+
 
 .menu, .entrar{
     display: flex;
@@ -160,7 +166,6 @@ body{
 
 .card:hover{
     transform: scale(1.05);
-    background-color: var(--cor-dois-texto);
     box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
 }
 
@@ -193,6 +198,7 @@ body{
     flex-wrap: wrap;
     text-align: left;
     color: var(--cor-um-texto);
+    height: 300px;
 }
 
 .coluna{
@@ -216,7 +222,11 @@ body{
     color: var(--cor-reserva);
 }
 
-
+.rodape img {
+    width: 230px;
+    height: 200px;
+    justify-self: start;
+}
 
 .social img{
     width: 40px;

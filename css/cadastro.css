@@ -21,7 +21,6 @@ body{
     background-color: var(--cor-um-fundo);
 }
 
-/* NAVBAR */
 .navbar {
     background-color: rgba(0, 0, 0, 0.378);
     display: flex;
@@ -34,6 +33,11 @@ body{
     padding: 20px;
     top:0;
     z-index: 10;
+}
+.navbar img {
+    width: 130px;
+    height: 100px;
+    justify-self: start;
 }
 
 .menu, .entrar{
@@ -94,6 +98,7 @@ body{
     flex-wrap: wrap;
     text-align: left;
     color: var(--cor-um-texto);
+    height: 300px;
 }
 
 .rodape .coluna{
@@ -116,6 +121,13 @@ body{
     text-decoration-color: var(--cor-reserva);
     color: var(--cor-reserva);
 }
+
+.rodape img {
+    width: 230px;
+    height: 200px;
+    justify-self: start;
+}
+
 
 .social img{
     width: 40px;
@@ -155,13 +167,17 @@ body{
     margin-bottom:25px;
 }
 
+input:focus {
+    outline: none;
+    border: 3px solid var(--cor-reserva);
+
+}
+
 input{
     width:100%;
     padding:12px;
     margin-bottom:18px;
     border-radius:8px;
-    border:none;
-    outline:none;
     font-size:1.1rem;
 }
 

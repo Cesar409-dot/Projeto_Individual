@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap');
+
+*, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Sirin Stencil", sans-serif;
+}
+
+:root {
+    --cor-um-texto: #F2EDD0;
+    --cor-dois-texto: #80E7F2;
+    --cor-um-fundo: #65655D;
+    --cor-dois-fundo: #026873;
+    --cor-reserva: #9FCE68;
+}
+
+body{
+    background-color: var(--cor-um-fundo);
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.378);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    width: 100%;
+    font-weight: 900;
+    font-size: 1.3rem;
+    padding: 20px;
+    top:0;
+    z-index: 10;
+}
+.navbar img {
+    width: 130px;
+    height: 100px;
+    justify-self: start;
+}
+
+.menu, .entrar{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.menu a, .entrar a{
+    text-decoration: none;
+    
+}
+
+.menu a :hover {
+    text-decoration: underline;
+    text-decoration-color: var(--cor-reserva);
+    text-decoration-thickness: 4px;
+    text-underline-offset: 8px;
+}
+
+.entrar .login p:hover{
+    background-color: var(--cor-reserva);
+    cursor: pointer;
+    transform: scale(1.05) rotate(3deg) skew(-8deg);
+}
+
+.navbar p, .entrar p{
+    color: var(--cor-um-texto);
+}
+
+.entrar .login p{
+    background-color: var(--cor-dois-texto);
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.entrar .page p{
+    padding: 8px 16px;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.page{
+    border-radius: 8px;
+    transform: scale(1.05) rotate(6deg) skew(-8deg);
+    background-color: var(--cor-reserva);
+}
+
+.rodape{
+    background-color: var(--cor-dois-fundo);
+    padding: 40px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: left;
+    color: var(--cor-um-texto);
+    height: 300px;
+}
+
+.rodape .coluna{
+    width: 250px;
+    margin-bottom: 25px;
+}
+
+.rodape img {
+    width: 230px;
+    height: 200px;
+    justify-self: start;
+}
+
+
+.rodape h3{
+    margin-bottom: 10px;
+    color: var(--cor-dois-texto);
+}
+
+.rodape a{
+    color: var(--cor-um-texto);
+    text-decoration: none;
+}
+
+.coluna a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--cor-reserva);
+    color: var(--cor-reserva);
+}
+
+.social img{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+
+.container{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+}
+
+.container img {
+    width: 100%;
+    height: 100%;
+}
+
+.form_box{
+    background-color:rgba(0,0,0,0.65);
+    width:380px;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    border:3px solid var(--cor-reserva);
+    backdrop-filter:blur(4px);
+    position: absolute;
+}
+
+input:focus {
+    outline: none;
+    border: 3px solid var(--cor-reserva);
+
+}
+
+.form_box h2{
+    font-size:2rem;
+    color:var(--cor-um-texto);
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:18px;
+    border-radius:8px;
+    font-size:1.1rem;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border-radius:40px;
+    border:none;
+    font-size:1.2rem;
+    background-color:var(--cor-dois-fundo);
+    color:var(--cor-um-texto);
+    cursor:pointer;
+    transform:skewX(-7deg);
+    transition:0.3s;
+}
+
+button:hover{
+    background-color:var(--cor-reserva);
+    transform:skewX(-7deg) scale(1.05);
+}
+
+.trocar{
+    margin-top:20px;
+    color:var(--cor-um-texto);
+}
+
+.trocar a {
+    color:var(--cor-dois-texto);
+    text-decoration:none;
+}
+
+.trocar a:hover{
+    color:var(--cor-reserva);
+}   
