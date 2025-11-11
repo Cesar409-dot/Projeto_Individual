@@ -84,6 +84,19 @@ body{
     transition: 0.3s;
 }
 
+.validacao{
+    font-size: 0.7rem;
+    align-self: flex-start;
+    margin-left: 100px;
+}
+
+#msg, #msg2, #msg3, #msg4 {
+    font-size: 0.7rem;
+    align-self: flex-start;
+    margin-left: 100px;
+    color: red;
+}
+
 .page{
     border-radius: 8px;
     transform: scale(1.05) rotate(6deg) skew(-8deg);
