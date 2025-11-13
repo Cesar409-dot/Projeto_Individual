@@ -116,10 +116,9 @@ body{
     margin-bottom: 80px;
 }
 
-.linhas2{
+.linha2{
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: space-around;
     flex-wrap: wrap;
     margin-bottom: 80px;
 }
