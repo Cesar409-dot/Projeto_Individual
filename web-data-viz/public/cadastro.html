@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link rel="stylesheet" href="./css/cadastro.css" />
+  <link rel="icon" href="./assets/imgs/logoBanguela.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+      <header class="navbar">
+        <img src="./assets/imgs/logoBanguela.png" alt="">
+        <div class="menu">
+            <a href="inicio.html"><p>Início</p></a>
+            <a href="sobreMim.html"><p>Sobre Mim</p></a>
+            <a href="quiz.html"><p>Quiz</p></a>
+        </div>
+
+        <div class="entrar">
+            <a href="login.html" class="login"><p>Login</p></a>
+            <a href="cadastro.html" class="page"><p>Cadastro</p></a>
+        </div>
+    </header>
+
+
+    
+
+
+ <div class="container">
+
+    <img src="./assets/imgs/fundo2.jpg" alt="">
+        <div class="form_box">
+
+            <h2>Criar Conta</h2>
+
+            <input type="text" placeholder="Nome completo" id="iptNome">
+            <div id="msg"></div>
+            <input type="email" placeholder="Email para cadastro" id="iptEmail">
+            <div id="msg2"></div>
+            <input type="password" placeholder="Crie sua senha" onkeyup="mostrarSenha()" id="iptSenha">
+            <div id="validacao">
+                <p id="p1"></p>
+                <p id="p2"></p>
+                <p id="p3"></p>
+                <p id="p4"></p>
+                <p id="p5"></p>
+            </div>
+            <input type="password" placeholder="Confirme sua senha" id="iptCheckSenha">
+            <div id="msg3"></div>
+            <button onclick="cadastrar()">Cadastrar</button>
+
+            <p class="trocar">Já possui conta? <a href="login.html">Entrar</a></p>
+
+        </div>
+
+    </div>
+
+
+   <footer class="rodape">
+    <img src="./assets/imgs/logoBanguela.png" alt="">
+    <div class="coluna">
+        <h3>Contato</h3>
+        <p><b>Email </b></p> <p>berkcontato@gmail.com</p> <br>
+        <p><b>Suporte </b></p> <p> berksuporte@gmail.com</p> <br>
+        <p><b>Telefone </b></p> <p> (11) 9999-9999</p><br>
+    </div>
+
+    <div class="coluna">
+        <h3>Links Rápidos</h3>
+        <a href="inicio.html">Início</a><br>
+        <a href="sobreMim.html">Sobre Mim</a><br>
+        <a href="quiz.html">Quiz</a><br>
+        <a href="login.html">Login</a><br>
+        <a href="cadastro.html">Cadastro</a>
+    </div>
+
+    <div class="coluna">
+        <h3>Redes Sociais</h3>
+        <div class="social">
+            <img src="./assets/imgs/linkedin.png" alt="Icone 3">
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>
+
+<script>
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = iptNome.value;
+    var emailVar = iptEmail.value;
+    var senhaVar = iptSenha.value;
+    var confirmacaoSenhaVar = iptCheckSenha.value;
+
+    // Verificando se há algum campo em branco
+    mostrarSenha()
+            msg.innerHTML = ''
+            msg2.innerHTML = ''
+            msg3.innerHTML = ''
+            
+            if(nomeVar == ``) {
+                msg.innerHTML = `Preencha o campo nome`
+            }   if (emailVar == ``) {
+                msg2.innerHTML = `Preencha o campo email`
+            }   if (confirmarSenha == ``){
+                msg3.innerHTML = `Preencha o campo Confirmar Senha`
+            }   if(senhaVar == ``) {
+              validacao.innerHTML =`Preencha o campo Senha`
+            }
+            else if (!(email.includes(`@`))){
+                msg2.innerHTML = `Seu email não contém "@"`
+            }   else if (!(email.includes(`.`))){
+                msg2.innerHTML = `Seu email não contém "."`
+            }   else if(senha.length < 8){
+                msg4.innerHTML = 'No campo senha tem que ter mais que 8 caracteres'
+            }   else if (senha == senha.toUpperCase()){
+                msg4.innerHTML = 'A senha não contém letras minúsculas'
+            } else if (senha == senha.toLowerCase()) {
+                msg4.innerHTML = 'A senha não contém letras maiúsculas'
+            } else if(!(senha.includes(`0`)) && !(senha.includes(`1`)) && !(senha.includes(`2`)) && !(senha.includes(`3`))&& !(senha.includes(`4`)) && !(senha.includes(`5`)) && !(senha.includes(`6`)) && !(senha.includes(`7`)) && !(senha.includes(`8`)) && !(senha.includes(`9`))){
+                msg4.innerHTML = 'A senha tem que ter pelo menos um número (0 a 9)'
+            }   else if(!(senha.includes(`!`)) && !(senha.includes(`@`)) && !(senha.includes(`#`)) && !(senha.includes(`$`))&& !(senha.includes(`%`))){
+                msg4.innerHTML = `A senha tem que ter pelo menos um caracter especial (!, @, #, $, %)`
+            }
+            else if(confirmarSenha != senha) {
+                msg4.innerHTML = `Verifique se as senhas estão iguais` 
+            } else {
+                alert(`Cadastro efetuado com sucesso!! Agora faça seu login!!`)
+                window.location.href = "login.html"
+            }
+        
+
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+  function mostrarSenha() {
+            var senha = iptSenha.value
+            if (senha.length < 8) {
+                p1.innerHTML = `<span style="color: red;">A senha tem que conter pelo menos 8 caracteres</span><br>`
+            }   if(senha.length >= 8) {
+                p1.innerHTML = `<span style="color: green;">A senha tem que conter pelo menos 8 caracteres</span><br>`
+            }   if (senha == senha.toUpperCase()){
+                p2.innerHTML = `<span style="color: red;">A senha tem que conter letras minúsculas</span><br>`
+            }   if (senha != senha.toUpperCase()){
+                p2.innerHTML = `<span style="color: green;">A senha tem que conter letras minúsculas</span><br>`
+            }   if (senha == senha.toLowerCase()){
+                p3.innerHTML = `<span style="color: red;">A senha tem que conter letras maiúsculas</span><br>`
+            }   if (senha != senha.toLowerCase()){
+                p3.innerHTML = `<span style="color: green;">A senha tem que conter letras maiúsculas</span><br>`
+            }   if(!(senha.includes(`!`)) || !(senha.includes(`@`)) || !(senha.includes(`#`)) || !(senha.includes(`$`))|| !(senha.includes(`%`))){
+                p4.innerHTML = `<span style="color: red;">A senha tem que conter caracteres especiais(! @ # $ %)</span><br>`
+            }   if(senha.includes(`!`) || senha.includes(`@`) || senha.includes(`#`) || senha.includes(`$`)|| senha.includes(`%`)){
+                p4.innerHTML = `<span style="color: green;">A senha tem que conter caracteres especiais(! @ # $ %)</span><br>`
+            }   if(!(senha.includes(`0`)) || !(senha.includes(`1`)) || !(senha.includes(`2`)) || !(senha.includes(`3`))|| !(senha.includes(`4`)) || !(senha.includes(`5`)) || !(senha.includes(`6`)) || !(senha.includes(`7`)) || !(senha.includes(`8`)) || !(senha.includes(`9`))) {
+                p5.innerHTML = `<span style="color: red;">A senha tem que conter números</span><br>`
+            }   if(senha.includes(`0`) || senha.includes(`1`) || senha.includes(`2`) || senha.includes(`3`)|| senha.includes(`4`) || senha.includes(`5`) || senha.includes(`6`) || senha.includes(`7`) || senha.includes(`8`) || senha.includes(`9`)) {
+                p5.innerHTML = `<span style="color: green;">A senha tem que conter números</span><br>`
+            }
+        }
+
+
+
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>

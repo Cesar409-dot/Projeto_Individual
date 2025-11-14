@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/login.css">
-    <title>Inicio</title>
+
+    <title>AquaTech | Login</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
 <body>
 
+    <!--Header-->
+
     <header class="navbar">
-        <img src="/public/imgs/logoBanguela.png" alt="">
+        <img src="./assets/imgs/logoBanguela.png" alt="">
         <div class="menu">
-            <a href="/public/html/inicio.html"><p>Início</p></a>
-            <a href="/public/html/sobreMim.html"><p>Sobre Mim</p></a>
-            <a href="/public/html/quiz.html"><p>Quiz</p></a>
+            <a href="inicio.html"><p>Início</p></a>
+            <a href="sobreMim.html"><p>Sobre Mim</p></a>
+            <a href="quiz.html"><p>Quiz</p></a>
         </div>
 
         <div class="entrar">
-            <a href="/public/html/login.html" class="page"><p>Login</p></a>
-            <a href="/public/html/cadastro.html" class="login"><p>Cadastro</p></a>
+            <a href="login.html" class="page"><p>Login</p></a>
+            <a href="cadastro.html" class="login"><p>Cadastro</p></a>
         </div>
     </header>
 
@@ -29,17 +39,17 @@
 
  <div class="container">
 
-    <img src="/public/imgs/fundo4.jpeg" alt="">
+    <img src="./assets/imgs/fundo4.jpeg" alt="">
         <div class="form_box">
 
             <h2>Entrar na Conta</h2>
 
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Senha">
+            <input type="email" placeholder="Email" id="iptEmail">
+            <input type="password" placeholder="Senha" id="iptSenha">
 
             <button>Entrar</button>
 
-            <p class="trocar">Não possui conta? <a href="/public/html/cadastro.html">Criar</a></p>
+            <p class="trocar">Não possui conta? <a href="cadastro.html">Criar</a></p>
 
         </div>
 
@@ -47,7 +57,7 @@
 
 
    <footer class="rodape">
-    <img src="/public/imgs/logoBanguela.png" alt="">
+    <img src="./assets/imgs/logoBanguela.png" alt="">
     <div class="coluna">
         <h3>Contato</h3>
         <p><b>Email </b></p> <p>berkcontato@gmail.com</p> <br>
@@ -57,29 +67,33 @@
 
     <div class="coluna">
         <h3>Links Rápidos</h3>
-        <a href="/public/html/inicio.html">Início</a><br>
-        <a href="/public/html/sobreMim.html">Sobre Mim</a><br>
-        <a href="/public/html/quiz.html">Quiz</a><br>
-        <a href="/public/html/login.html">Login</a><br>
-        <a href="/public/html/cadastro.html">Cadastro</a>
+        <a href="inicio.html">Início</a><br>
+        <a href="sobreMim.html">Sobre Mim</a><br>
+        <a href="quiz.html">Quiz</a><br>
+        <a href="login.html">Login</a><br>
+        <a href="cadastro.html">Cadastro</a>
     </div>
 
     <div class="coluna">
         <h3>Redes Sociais</h3>
         <div class="social">
-            <img src="/public/imgs/linkedin.png" alt="Icone 3">
+            <img src="./assets/imgs/linkedin.png" alt="Icone 3">
         </div>
     </div>
 </footer>
 
 </body>
 
-    <script>
-        function entrar() {
+</html>
+
+<script>
+
+
+    function entrar() {
         aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
@@ -112,12 +126,9 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.CPF_USUARIO = json.cpf;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
                     }, 1000); // apenas para exibir o loading
@@ -144,6 +155,5 @@
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
-    </script>
 
-</html>
+</script>
