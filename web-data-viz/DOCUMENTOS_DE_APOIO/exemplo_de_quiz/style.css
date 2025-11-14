@@ -34,16 +34,12 @@ button {
     flex-direction: column;
 }
 
+.flex-colunar button img {
+    width: 30px;
+}
+
 .width-fit-content {
     width: fit-content;
-}
-
-.border-primary {
-    border: 3px solid var(--primary-brand-color);
-}
-
-.border-secondary {
-    border: 3px solid var(--secondary-brand-color);
 }
 
 .padding-8 {
@@ -52,21 +48,6 @@ button {
 
 .text-bold {
     font-weight: bold;
-}
-
-.text-success-with-bg {
-    color: var(--success-dark);
-    background-color: var(--success-light);
-}
-
-.text-warning-with-bg {
-    color: var(--warning-dark);
-    background-color: var(--warning-light);
-}
-
-.text-danger-with-bg {
-    color: var(--danger-dark);
-    background-color: var(--danger-light);
 }
 
 .text-new-gray {

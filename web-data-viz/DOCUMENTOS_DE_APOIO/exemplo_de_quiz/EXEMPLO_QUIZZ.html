@@ -14,15 +14,9 @@
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
+            
+            <div id="pontuacaoFinalJogo" >
+                <span id="msgFinal" ></span>
             </div>
         </div>
 
@@ -61,7 +55,7 @@
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                <button onclick="submeter()"  id="btnSubmeter"><img src="/public/imgs/seta-direita.png" alt=""></button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
@@ -81,7 +75,6 @@
             alternativaB: "Dezembro",
             alternativaC: "Junho",
             alternativaD: "Agosto",
-            alternativaCorreta: "alternativaC"
         },
 
         {
@@ -90,7 +83,6 @@
             alternativaB: "38 horas",
             alternativaC: "48 horas",
             alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
         },
 
         {
@@ -99,7 +91,6 @@
             alternativaB: "Doze",
             alternativaC: "Oito",
             alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
         }
 
     ]
@@ -107,9 +98,12 @@
     // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
+    let soluco = 0
+    let astrid = 0
+    let pernadepeixe = 0
+    let melequento = 0
+    let cabecadura = 0
+    let cabecaquente
     let quantidadeDeQuestoes = listaDeQuestoes.length
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
@@ -204,11 +198,7 @@
 
     function checarResposta() {
         const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
-
         const options = document.getElementsByName("option"); // recupera alternativas no html
-
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
 
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
