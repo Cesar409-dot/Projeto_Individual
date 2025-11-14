@@ -99,13 +99,14 @@ body{
 
 .banner p {
     position: absolute;
-    top: 30%; 
-    left: 66%;
+    top: 50%; 
+    left: 15%;
     text-align: start;
     color: var(--cor-um-texto);
     font-size: 1.5rem;
     background-color: var(--cor-dois-fundo);
     border-radius: 10px;
+    padding: 5px;
 }
 
 .secao_explicacao{
@@ -128,7 +129,7 @@ body{
     border: 4px solid var(--cor-reserva);
 }
 
-.texto_direita{
+.texto{
     max-width: 500px;
     font-size: 1.45rem;
     color: var(--cor-um-texto);

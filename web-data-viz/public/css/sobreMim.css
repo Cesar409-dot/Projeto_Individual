@@ -101,6 +101,13 @@ body{
     margin-bottom: 80px;
 }
 
+.seta {
+    width: 60px;
+    height: 60px;
+    justify-self: center;
+    align-self: center;
+}
+
 .setas {
     width: 60px;
     height: 60px;

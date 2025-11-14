@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/web-data-viz/public/css/cadastro.css">
+    <link rel="stylesheet" href="/public/css/cadastro.css">
     <title>Inicio</title>
 </head>
 
 <body>
 
     <header class="navbar">
-        <img src="/web-data-viz/public/imgs/logoBanguela.png" alt="">
+        <img src="/public/imgs/logoBanguela.png" alt="">
         <div class="menu">
-            <a href="/web-data-viz/public/html/inicio.html"><p>Início</p></a>
-            <a href="/web-data-viz/public/html/sobreMim.html"><p>Sobre Mim</p></a>
-            <a href="/web-data-viz/public/html/quiz.html"><p>Quiz</p></a>
+            <a href="/public/html/inicio.html"><p>Início</p></a>
+            <a href="/public/html/sobreMim.html"><p>Sobre Mim</p></a>
+            <a href="/public/html/quiz.html"><p>Quiz</p></a>
         </div>
 
         <div class="entrar">
-            <a href="/web-data-viz/public/html/login.html" class="login"><p>Login</p></a>
-            <a href="/web-data-viz/public/html/cadastro.html" class="page"><p>Cadastro</p></a>
+            <a href="/public/html/login.html" class="login"><p>Login</p></a>
+            <a href="/public/html/cadastro.html" class="page"><p>Cadastro</p></a>
         </div>
     </header>
 
@@ -29,7 +29,7 @@
 
  <div class="container">
 
-    <img src="/web-data-viz/public/imgs/fundo2.jpg" alt="">
+    <img src="/public/imgs/fundo2.jpg" alt="">
         <div class="form_box">
 
             <h2>Criar Conta</h2>
@@ -51,7 +51,7 @@
 
             <button onclick="cadastrar()">Cadastrar</button>
 
-            <p class="trocar">Já possui conta? <a href="/web-data-viz/public/html/login.html">Entrar</a></p>
+            <p class="trocar">Já possui conta? <a href="/public/html/login.html">Entrar</a></p>
 
         </div>
 
@@ -59,7 +59,7 @@
 
 
    <footer class="rodape">
-    <img src="/web-data-viz/public/imgs/logoBanguela.png" alt="">
+    <img src="/public/imgs/logoBanguela.png" alt="">
     <div class="coluna">
         <h3>Contato</h3>
         <p><b>Email </b></p> <p>berkcontato@gmail.com</p> <br>
@@ -69,17 +69,17 @@
 
     <div class="coluna">
         <h3>Links Rápidos</h3>
-        <a href="/web-data-viz/public/html/inicio.html">Início</a><br>
-        <a href="/web-data-viz/public/html/sobreMim.html">Sobre Mim</a><br>
-        <a href="/web-data-viz/public/html/quiz.html">Quiz</a><br>
-        <a href="/web-data-viz/public/html/login.html">Login</a><br>
-        <a href="/web-data-viz/public/html/cadastro.html">Cadastro</a>
+        <a href="/public/html/inicio.html">Início</a><br>
+        <a href="/public/html/sobreMim.html">Sobre Mim</a><br>
+        <a href="/public/html/quiz.html">Quiz</a><br>
+        <a href="/public/html/login.html">Login</a><br>
+        <a href="/public/html/cadastro.html">Cadastro</a>
     </div>
 
     <div class="coluna">
         <h3>Redes Sociais</h3>
         <div class="social">
-            <img src="/web-data-viz/public/imgs/linkedin.png" alt="Icone 3">
+            <img src="/public/imgs/linkedin.png" alt="Icone 3">
         </div>
     </div>
 </footer>
@@ -88,130 +88,130 @@
 
     <script>
 
-function cadastrar(){
-    var nome = iptNome.value
-    var email = iptEmail.value
-    var senha = iptSenha.value
-    var confirmarSenha = iptCheckSenha.value
-    mostrarSenha()
+// Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
 
-    msg.innerHTML = ''
-    msg2.innerHTML = ''
-    msg3.innerHTML = ''
-    msg3.innerHTML = ''
+  function cadastrar() {
+    // aguardar();
 
-    var numeros = ['0','1','2','3','4','5','6','7','8','9']
-    var especiais = ['!','@','#','$','%']
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var cpfVar = cpf_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var codigoVar = codigo_input.value;
+    var idEmpresaVincular
 
-    var temNumero = false
-    var temEspecial = false
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      codigoVar == "" ||
+      cpfVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
 
-    for (var i = 0; i < numeros.length; i++) {
-        if (senha.includes(numeros[i])) {
-            temNumero = true
-            break
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (nomeVar.length < 2) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    }
+
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].id
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        finalizarAguardar();
+      }
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        cpfServer: cpfVar,
+        idEmpresaVincularServer: idEmpresaVincular
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
         }
-    }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
 
-    for (var i = 0; i < especiais.length; i++) {
-        if (senha.includes(especiais[i])) {
-            temEspecial = true
-            break
-        }
-    }
+    return false;
+  }
 
-    if(nome == ``) {
-        msg.innerHTML = `Preencha o campo nome`
-    }   
-    if (email == ``) {
-        msg2.innerHTML = `Preencha o campo email`
-    }   
-    if (confirmarSenha == ``){
-        msg3.innerHTML = `Preencha o campo Confirmar Senha`
-    }
-    else if (!(email.includes(`@`))){
-        msg2.innerHTML = `Seu email não contém "@"`
-    }   
-    else if (!(email.includes(`.`))){
-        msg2.innerHTML = `Seu email não contém "."`
-    }   
-    else if(senha.length < 8){
-        msg3.innerHTML = 'No campo senha tem que ter mais que 8 caracteres'
-    }   
-    else if (senha == senha.toUpperCase()){
-        msg3.innerHTML = 'A senha não contém letras minúsculas'
-    } 
-    else if (senha == senha.toLowerCase()) {
-        msg3.innerHTML = 'A senha não contém letras maiúsculas'
-    } 
-    else if(!temNumero){
-        msg3.innerHTML = 'A senha tem que ter pelo menos um número (0 a 9)'
-    }   
-    else if(!temEspecial){
-        msg3.innerHTML = `A senha tem que ter pelo menos um caracter especial (!, @, #, $, %)`
-    }
-    else if(confirmarSenha != senha) {
-        msg3.innerHTML = `Verifique se as senhas estão iguais` 
-    } else {
-        alert(`Cadastro efetuado com sucesso!! Agora faça seu login!!`)
-        window.location.href = "login.html"
-    }
-}
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
 
-function mostrarSenha() {
-    var senha = iptSenha.value
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
 
-    var numeros = ['0','1','2','3','4','5','6','7','8','9']
-    var especiais = ['!','@','#','$','%']
-
-    var temNumero = false
-    var temEspecial = false
-
-    for (var i = 0; i < numeros.length; i++) {
-        if (senha.includes(numeros[i])) {
-            temNumero = true
-            break
-        }
-    }
-
-    for (var i = 0; i < especiais.length; i++) {
-        if (senha.includes(especiais[i])) {
-            temEspecial = true
-            break
-        }
-    }
-
-    if (senha.length >= 8) {
-        p1.innerHTML = `<span style="color: green;">A senha tem que conter pelo menos 8 caracteres</span><br>`
-    } else {
-        p1.innerHTML = `<span style="color: red;">A senha tem que conter pelo menos 8 caracteres</span><br>`
-    }
-
-    if (senha != senha.toUpperCase()) {
-        p2.innerHTML = `<span style="color: green;">A senha tem que conter letras minúsculas</span><br>`
-    } else {
-        p2.innerHTML = `<span style="color: red;">A senha tem que conter letras minúsculas</span><br>`
-    }
-
-    if (senha != senha.toLowerCase()) {
-        p3.innerHTML = `<span style="color: green;">A senha tem que conter letras maiúsculas</span><br>`
-    } else {
-        p3.innerHTML = `<span style="color: red;">A senha tem que conter letras maiúsculas</span><br>`
-    }
-
-    if (temEspecial) {
-        p4.innerHTML = `<span style="color: green;">A senha tem que conter caracteres especiais (! @ # $ %)</span><br>`
-    } else {
-        p4.innerHTML = `<span style="color: red;">A senha tem que conter caracteres especiais (! @ # $ %)</span><br>`
-    }
-
-    if (temNumero) {
-        p5.innerHTML = `<span style="color: green;">A senha tem que conter números</span><br>`
-    } else {
-        p5.innerHTML = `<span style="color: red;">A senha tem que conter números</span><br>`
-    }
-}
-
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 </script>
 
 
