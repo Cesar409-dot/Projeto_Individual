@@ -84,7 +84,7 @@ body{
     transition: 0.3s;
 }
 
-#msg, #msg2, #msg3, #msg4 {
+#msg, #msg2, #msg3, #validacao {
     font-size: 0.9rem;
     color: red;
     line-height: 1.2;

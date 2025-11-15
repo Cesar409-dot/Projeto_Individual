@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,7 +20,7 @@
       <header class="navbar">
         <img src="./assets/imgs/logoBanguela.png" alt="">
         <div class="menu">
-            <a href="inicio.html"><p>Início</p></a>
+            <a href="index.html"><p>Início</p></a>
             <a href="sobreMim.html"><p>Sobre Mim</p></a>
             <a href="quiz.html"><p>Quiz</p></a>
         </div>
@@ -41,19 +42,19 @@
 
             <h2>Criar Conta</h2>
 
-            <input type="text" placeholder="Nome completo" id="iptNome">
+            <input type="text" placeholder="Nome completo" onkeyup="mostrarValidacao()" id="iptNome">
             <div id="msg"></div>
-            <input type="email" placeholder="Email para cadastro" id="iptEmail">
+            <input type="email" placeholder="Email para cadastro" onkeyup="mostrarValidacao()" id="iptEmail">
             <div id="msg2"></div>
-            <input type="password" placeholder="Crie sua senha" onkeyup="mostrarSenha()" id="iptSenha">
+            <input type="password" placeholder="Crie sua senha" onkeyup="mostrarValidacao()" id="iptSenha">
             <div id="validacao">
-                <p id="p1"></p>
-                <p id="p2"></p>
-                <p id="p3"></p>
-                <p id="p4"></p>
-                <p id="p5"></p>
+                <div id="p1"></div>
+                <div id="p2"></div>
+                <div id="p3"></div>
+                <div id="p4"></div>
+                <div id="p5"></div>
             </div>
-            <input type="password" placeholder="Confirme sua senha" id="iptCheckSenha">
+            <input type="password" placeholder="Confirme sua senha" onkeyup="mostrarValidacao()" id="iptCheckSenha">
             <div id="msg3"></div>
             <button onclick="cadastrar()">Cadastrar</button>
 
@@ -75,7 +76,7 @@
 
     <div class="coluna">
         <h3>Links Rápidos</h3>
-        <a href="inicio.html">Início</a><br>
+        <a href="index.html">Início</a><br>
         <a href="sobreMim.html">Sobre Mim</a><br>
         <a href="quiz.html">Quiz</a><br>
         <a href="login.html">Login</a><br>
@@ -95,64 +96,123 @@
 
 <script>
 
-  function cadastrar() {
-    // aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+ function cadastrar() {
+    
     var nomeVar = iptNome.value;
     var emailVar = iptEmail.value;
     var senhaVar = iptSenha.value;
     var confirmacaoSenhaVar = iptCheckSenha.value;
 
-    // Verificando se há algum campo em branco
-    mostrarSenha()
-            msg.innerHTML = ''
-            msg2.innerHTML = ''
-            msg3.innerHTML = ''
-            
-            if(nomeVar == ``) {
-                msg.innerHTML = `Preencha o campo nome`
-            }   if (emailVar == ``) {
-                msg2.innerHTML = `Preencha o campo email`
-            }   if (confirmarSenha == ``){
-                msg3.innerHTML = `Preencha o campo Confirmar Senha`
-            }   if(senhaVar == ``) {
-              validacao.innerHTML =`Preencha o campo Senha`
-            }
-            else if (!(email.includes(`@`))){
-                msg2.innerHTML = `Seu email não contém "@"`
-            }   else if (!(email.includes(`.`))){
-                msg2.innerHTML = `Seu email não contém "."`
-            }   else if(senha.length < 8){
-                msg4.innerHTML = 'No campo senha tem que ter mais que 8 caracteres'
-            }   else if (senha == senha.toUpperCase()){
-                msg4.innerHTML = 'A senha não contém letras minúsculas'
-            } else if (senha == senha.toLowerCase()) {
-                msg4.innerHTML = 'A senha não contém letras maiúsculas'
-            } else if(!(senha.includes(`0`)) && !(senha.includes(`1`)) && !(senha.includes(`2`)) && !(senha.includes(`3`))&& !(senha.includes(`4`)) && !(senha.includes(`5`)) && !(senha.includes(`6`)) && !(senha.includes(`7`)) && !(senha.includes(`8`)) && !(senha.includes(`9`))){
-                msg4.innerHTML = 'A senha tem que ter pelo menos um número (0 a 9)'
-            }   else if(!(senha.includes(`!`)) && !(senha.includes(`@`)) && !(senha.includes(`#`)) && !(senha.includes(`$`))&& !(senha.includes(`%`))){
-                msg4.innerHTML = `A senha tem que ter pelo menos um caracter especial (!, @, #, $, %)`
-            }
-            else if(confirmarSenha != senha) {
-                msg4.innerHTML = `Verifique se as senhas estão iguais` 
-            } else {
-                alert(`Cadastro efetuado com sucesso!! Agora faça seu login!!`)
-                window.location.href = "login.html"
-            }
-        
+    msg.innerHTML = "";
+    msg2.innerHTML = "";
+    msg3.innerHTML = "";
 
+    let temErro = false;
 
-    // Enviando o valor da nova input
+    if (nomeVar == "") {
+        msg.innerHTML = "Preencha o campo nome";
+        temErro = true;
+    } else {
+        msg.innerHTML = "";
+    }
+
+    if (emailVar == "") {
+        msg2.innerHTML = "Preencha o campo email";
+        temErro = true;
+    } else if (!emailVar.includes("@")) {
+        msg2.innerHTML = 'Seu email não contém "@"';
+        temErro = true;
+    } else if (!emailVar.includes(".")) {
+        msg2.innerHTML = 'Seu email não contém "."';
+        temErro = true;
+    } else {
+        msg2.innerHTML = "";
+    }
+
+    if (confirmacaoSenhaVar == "") {
+        msg3.innerHTML = "Preencha o campo Confirmar Senha";
+        temErro = true;
+    } else {
+        msg3.innerHTML = "";
+    }
+
+    if (senhaVar == "") {
+
+        p1.innerHTML = "";
+        p2.innerHTML = "";
+        p3.innerHTML = "";
+        p4.innerHTML = "";
+        p5.innerHTML = "";
+
+        p1.innerHTML = `<span style="color:red;">Preencha o campo Senha</span><br>`;
+        temErro = true;
+
+    } else {
+
+        if (senhaVar.length < 8) {
+            p1.innerHTML = `<span style="color:red;">A senha tem que conter pelo menos 8 caracteres</span><br>`;
+            temErro = true;
+        } else {
+            p1.innerHTML = `<span style="color:green;">A senha tem que conter pelo menos 8 caracteres</span><br>`;
+        }
+
+        if (senhaVar == senhaVar.toUpperCase()) {
+            p2.innerHTML = `<span style="color:red;">A senha tem que conter letras minúsculas</span><br>`;
+            temErro = true;
+        } else {
+            p2.innerHTML = `<span style="color:green;">A senha tem que conter letras minúsculas</span><br>`;
+        }
+
+        if (senhaVar == senhaVar.toLowerCase()) {
+            p3.innerHTML = `<span style="color:red;">A senha tem que conter letras maiúsculas</span><br>`;
+            temErro = true;
+        } else {
+            p3.innerHTML = `<span style="color:green;">A senha tem que conter letras maiúsculas</span><br>`;
+        }
+
+        if (
+            senhaVar.includes("!") ||
+            senhaVar.includes("@") ||
+            senhaVar.includes("#") ||
+            senhaVar.includes("$") ||
+            senhaVar.includes("%")
+        ) {
+            p4.innerHTML = `<span style="color:green;">A senha tem que conter caracteres especiais (! @ # $ %)</span><br>`;
+        } else {
+            p4.innerHTML = `<span style="color:red;">A senha tem que conter caracteres especiais (! @ # $ %)</span><br>`;
+            temErro = true;
+        }
+
+        if (
+            senhaVar.includes("0") || senhaVar.includes("1") || senhaVar.includes("2") ||
+            senhaVar.includes("3") || senhaVar.includes("4") || senhaVar.includes("5") ||
+            senhaVar.includes("6") || senhaVar.includes("7") || senhaVar.includes("8") ||
+            senhaVar.includes("9")
+        ) {
+            p5.innerHTML = `<span style="color:green;">A senha tem que conter números</span><br>`;
+        } else {
+            p5.innerHTML = `<span style="color:red;">A senha tem que conter números</span><br>`;
+            temErro = true;
+        }
+
+    }
+
+    if (confirmacaoSenhaVar != senhaVar) {
+        msg3.innerHTML = "As senhas não coincidem";
+        temErro = true;
+    }
+
+    if (!temErro) {
+        alert("Cadastro efetuado com sucesso!! Agora faça seu login!!");
+        window.location.href = "login.html";
+    }
+
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar
@@ -184,35 +244,111 @@
 
     return false;
   }
-  function mostrarSenha() {
-            var senha = iptSenha.value
-            if (senha.length < 8) {
-                p1.innerHTML = `<span style="color: red;">A senha tem que conter pelo menos 8 caracteres</span><br>`
-            }   if(senha.length >= 8) {
-                p1.innerHTML = `<span style="color: green;">A senha tem que conter pelo menos 8 caracteres</span><br>`
-            }   if (senha == senha.toUpperCase()){
-                p2.innerHTML = `<span style="color: red;">A senha tem que conter letras minúsculas</span><br>`
-            }   if (senha != senha.toUpperCase()){
-                p2.innerHTML = `<span style="color: green;">A senha tem que conter letras minúsculas</span><br>`
-            }   if (senha == senha.toLowerCase()){
-                p3.innerHTML = `<span style="color: red;">A senha tem que conter letras maiúsculas</span><br>`
-            }   if (senha != senha.toLowerCase()){
-                p3.innerHTML = `<span style="color: green;">A senha tem que conter letras maiúsculas</span><br>`
-            }   if(!(senha.includes(`!`)) || !(senha.includes(`@`)) || !(senha.includes(`#`)) || !(senha.includes(`$`))|| !(senha.includes(`%`))){
-                p4.innerHTML = `<span style="color: red;">A senha tem que conter caracteres especiais(! @ # $ %)</span><br>`
-            }   if(senha.includes(`!`) || senha.includes(`@`) || senha.includes(`#`) || senha.includes(`$`)|| senha.includes(`%`)){
-                p4.innerHTML = `<span style="color: green;">A senha tem que conter caracteres especiais(! @ # $ %)</span><br>`
-            }   if(!(senha.includes(`0`)) || !(senha.includes(`1`)) || !(senha.includes(`2`)) || !(senha.includes(`3`))|| !(senha.includes(`4`)) || !(senha.includes(`5`)) || !(senha.includes(`6`)) || !(senha.includes(`7`)) || !(senha.includes(`8`)) || !(senha.includes(`9`))) {
-                p5.innerHTML = `<span style="color: red;">A senha tem que conter números</span><br>`
-            }   if(senha.includes(`0`) || senha.includes(`1`) || senha.includes(`2`) || senha.includes(`3`)|| senha.includes(`4`) || senha.includes(`5`) || senha.includes(`6`) || senha.includes(`7`) || senha.includes(`8`) || senha.includes(`9`)) {
-                p5.innerHTML = `<span style="color: green;">A senha tem que conter números</span><br>`
-            }
+
+  function mostrarValidacao() {
+    var nomeVar = iptNome.value;
+    var emailVar = iptEmail.value;
+    var senhaVar = iptSenha.value;
+    var confirmacaoSenhaVar = iptCheckSenha.value;
+
+    msg.innerHTML = "";
+    msg2.innerHTML = "";
+    msg3.innerHTML = "";
+
+    let temErro = false;
+
+    if (nomeVar == "") {
+        msg.innerHTML = "Preencha o campo nome";
+        temErro = true;
+    } else {
+        msg.innerHTML = "";
+    }
+
+    if (emailVar == "") {
+        msg2.innerHTML = "Preencha o campo email";
+        temErro = true;
+    } else if (!emailVar.includes("@")) {
+        msg2.innerHTML = 'Seu email não contém "@"';
+        temErro = true;
+    } else if (!emailVar.includes(".")) {
+        msg2.innerHTML = 'Seu email não contém "."';
+        temErro = true;
+    } else {
+        msg2.innerHTML = "";
+    }
+
+    if (confirmacaoSenhaVar == "") {
+        msg3.innerHTML = "Preencha o campo Confirmar Senha";
+        temErro = true;
+    } else {
+        msg3.innerHTML = "";
+    }
+
+    if (senhaVar == "") {
+
+        p1.innerHTML = "";
+        p2.innerHTML = "";
+        p3.innerHTML = "";
+        p4.innerHTML = "";
+        p5.innerHTML = "";
+
+        p1.innerHTML = `<span style="color:red;">Preencha o campo Senha</span><br>`;
+        temErro = true;
+
+    } else {
+
+        if (senhaVar.length < 8) {
+            p1.innerHTML = `<span style="color:red;">A senha tem que conter pelo menos 8 caracteres</span><br>`;
+            temErro = true;
+        } else {
+            p1.innerHTML = `<span style="color:green;">A senha tem que conter pelo menos 8 caracteres</span><br>`;
         }
 
+        if (senhaVar == senhaVar.toUpperCase()) {
+            p2.innerHTML = `<span style="color:red;">A senha tem que conter letras minúsculas</span><br>`;
+            temErro = true;
+        } else {
+            p2.innerHTML = `<span style="color:green;">A senha tem que conter letras minúsculas</span><br>`;
+        }
 
+        if (senhaVar == senhaVar.toLowerCase()) {
+            p3.innerHTML = `<span style="color:red;">A senha tem que conter letras maiúsculas</span><br>`;
+            temErro = true;
+        } else {
+            p3.innerHTML = `<span style="color:green;">A senha tem que conter letras maiúsculas</span><br>`;
+        }
 
+        if (
+            senhaVar.includes("!") ||
+            senhaVar.includes("@") ||
+            senhaVar.includes("#") ||
+            senhaVar.includes("$") ||
+            senhaVar.includes("%")
+        ) {
+            p4.innerHTML = `<span style="color:green;">A senha tem que conter caracteres especiais (! @ # $ %)</span><br>`;
+        } else {
+            p4.innerHTML = `<span style="color:red;">A senha tem que conter caracteres especiais (! @ # $ %)</span><br>`;
+            temErro = true;
+        }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
+        if (
+            senhaVar.includes("0") || senhaVar.includes("1") || senhaVar.includes("2") ||
+            senhaVar.includes("3") || senhaVar.includes("4") || senhaVar.includes("5") ||
+            senhaVar.includes("6") || senhaVar.includes("7") || senhaVar.includes("8") ||
+            senhaVar.includes("9")
+        ) {
+            p5.innerHTML = `<span style="color:green;">A senha tem que conter números</span><br>`;
+        } else {
+            p5.innerHTML = `<span style="color:red;">A senha tem que conter números</span><br>`;
+            temErro = true;
+        }
+
+    }
+
+    if (confirmacaoSenhaVar != senhaVar) {
+        msg3.innerHTML = "As senhas não coincidem";
+        temErro = true;
+    }
   }
+
 </script>
