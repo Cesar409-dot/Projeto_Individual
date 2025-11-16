@@ -47,7 +47,8 @@
             <input type="email" placeholder="Email" id="iptEmail">
             <input type="password" placeholder="Senha" id="iptSenha">
 
-            <button>Entrar</button>
+            <button onclick="entrar()">Entrar</button>
+            <div id="msg" style="color: green; font-size: 1.3rem;"></div>
 
             <p class="trocar">Não possui conta? <a href="cadastro.html">Criar</a></p>
 
@@ -90,19 +91,13 @@
 
 
     function entrar() {
-        aguardar();
-
         var emailVar = iptEmail.value;
         var senhaVar = iptSenha.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -122,7 +117,6 @@
 
             if (resposta.ok) {
                 console.log(resposta);
-
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -130,8 +124,14 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                        msg.innerHTML = `Login efetuado com sucesso!`
+                    }, 1000);
+                    setTimeout(function () {
+                        alert("Agora Você será redirecionado para fazer o quiz")
+                    }, 2000);
+                    setTimeout(function () {
+                        window.location = "perguntas.html";
+                    }, 3000);
 
                 });
 
@@ -141,7 +141,6 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 
@@ -152,8 +151,6 @@
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
+
 
 </script>

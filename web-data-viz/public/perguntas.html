@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Personalidade</title>
+    <link rel="stylesheet" href="./css/perguntas.css">
+</head>
+
+<body>
+
+   <div id="container">
+
+    <!-- Botão que inicia o quiz. Antes de clicar nele nada aparece. -->
+    <button id="btnIniciar" onclick="iniciarQuiz()">Iniciar Quiz</button>
+
+    <!-- Container do quiz (perguntas e respostas), escondido até o usuário clicar em "Iniciar" -->
+    <div id="quizContainer">
+
+        <h2>Quiz de Personalidade</h2>
+
+        <!-- Exibe qual número da pergunta o usuário está respondendo -->
+        <p id="infoQuestao"></p>
+
+        <!-- Texto principal da pergunta -->
+        <p id="pergunta"></p>
+
+        <!-- Espaço onde as opções da pergunta são inseridas dinamicamente -->
+        <div id="opcoes"></div>
+
+        <!-- Botões de navegação -->
+        <div id="botoesNavegacao">
+            <button id="btnVoltar" onclick="voltar()">Voltar</button>
+            <button id="btnAvancar" onclick="avancar()">Avançar</button>
+        </div>
+    </div>
+
+    <!-- Resultado final, aparece só depois da última pergunta -->
+    <div id="resultado"></div>
+
+</div>
+
+
+    <script>
+// Lista de perguntas do quiz
+const perguntas = [
+    {
+        pergunta: "1. Como você prefere resolver seus conflitos?",
+        opcoes: ["Inteligência e diálogo", "Força e coragem", "Improviso", "Prudência", "Intensidade", "Criatividade"],
+        pontos: [["soluco", "pernaDePeixe"], ["astrid", "cabecaQuente", "soluco"], ["melequento", "cabecaDura", "cabecaQuente"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente"], ["soluco"]]
+    },
+    {
+        pergunta: "2. Qual dessas qualidades mais predomina em você?",
+        opcoes: ["Criatividade", "Coragem", "Astúcia", "Cautela", "Teimosia", "Empatia"],
+        pontos: [["soluco"], ["astrid", "cabecaQuente", "soluco"], ["melequento"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente", "melequento"], ["soluco", "pernaDePeixe"]]
+    },
+    {
+        pergunta: "3. O que mais te motiva, quando algo da errado, mas não era para dar?",
+        opcoes: ["Continuar fazendo a coisa certa", "Ficar perto de quem amo", "Ser reconhecido do mesmo jeito", "Aprender coisas novas, para que não se repita", "Provar meu valor", "Ajudar os outros, para que não aconteça com eles"],
+        pontos: [["soluco"], ["astrid", "cabecaQuente"], ["melequento", "cabecaDura"], ["pernaDePeixe", "soluco"], ["cabecaDura", "cabecaQuente", "astrid", "melequento"], ["soluco", "astrid", "pernaDePeixe"]]
+    },
+    {
+        pergunta: "4. Qual seu maior ponto forte?",
+        opcoes: ["Empatia", "Determinação", "Confiança", "Inteligência", "Persistência", "Criatividade"],
+        pontos: [["soluco"], ["astrid", "cabecaQuente"], ["melequento", "astrid", "soluco"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente"], ["soluco", "pernaDePeixe"]]
+    },
+    {
+        pergunta: "5. Como você reage quando algo dá errado?",
+        opcoes: ["Penso em outra solução", "Insisto até conseguir", "Improviso algo na hora", "Peço ajuda a alguém", "Fico irritado, mas sigo em frente", "Fico calmo e penso no próximo passo"],
+        pontos: [["soluco", "astrid"], ["cabecaDura", "cabecaQuente"], ["melequento", "astrid"], ["pernaDePeixe"], ["cabecaQuente", "melequento"], ["soluco"]]
+    },
+    {
+        pergunta: "6. No seu grupo de amigos, quem é você?",
+        opcoes: ["O conselheiro", "O protetor", "O engraçado", "O estudioso", "O competitivo", "O leal"],
+        pontos: [["soluco", "astrid"], ["astrid", "melequento"], ["melequento"], ["pernaDePeixe", "soluco"], ["cabecaDura", "cabecaQuente"], ["soluco", "astrid", "melequento"]]
+    },
+    {
+        pergunta: "7. O que você mais valoriza em alguém?",
+        opcoes: ["Tranquilidade", "Força de vontade", "Criatividade", "Conhecimentos gerais", "Persistência", "Amizades verdadeiras"],
+    pontos: [["soluco", "astrid"], ["astrid", "cabecaQuente"], ["soluco","melequento"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente"], ["soluco", "astrid"]]
+    },
+    {
+        pergunta: "8. Como você toma decisões sob pressão?",
+        opcoes: ["Pensando com calma", "Seguindo meu instinto", "Analisando vantagens", "Perguntando opiniões", "Decidindo o mais rápido possível", "Consultando apenas amigos próximos"],
+        pontos: [["soluco", "astrid"], ["cabecaQuente", "melequento", "cabecaDura"], ["melequento", "cabecaDura", "cabecaQuente"], ["pernaDePeixe"], ["cabecaDura"], ["soluco", "astrid", "pernaDePeixe"]]
+    },
+    {
+        pergunta: "9. O que você faria se estivesse em uma situação perigosa?",
+        opcoes: ["Criaria um plano para sair dela", "Protegeria os outros", "Tentaria enganar o perigo", "Buscaria informações", "Agiria sem pensar", "Esperaria uma oportunidade para acabar com o perigo"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaQuente"], ["cabecaDura"]]
+    },
+    {
+        pergunta: "10. Qual dessas frases combina mais com você?",
+        opcoes: ["Sempre há um jeito melhor de resolver as coisas", "Nunca deixo ninguém para trás em nenhuma hipótese", "Eu me viro muito bem sozinho", "Quero aprender o que posso para me prevenir", "Eu e meu irmão damos conta do que vier", "Acredito em mim mesmo, para resolver a situação sozinho"],
+        pontos: [["soluco"], ["astrid", "cabecaQuente"], ["melequento", "astrid"], ["pernaDePeixe", "soluco"], ["cabecaDura", "cabecaQuente"], ["soluco", "melequento"]]
+    }
+];
+
+
+// Lista de personagens usada para percorrer mais fácil
+const listaPersonagens = ["soluco", "astrid", "cabecaQuente", "melequento", "pernaDePeixe", "cabecaDura"];
+
+// Pontuação inicial de cada personagem
+const pontuacaoPersonagens = {
+    soluco: 0,
+    astrid: 0,
+    cabecaQuente: 0,
+    melequento: 0,
+    pernaDePeixe: 0,
+    cabecaDura: 0
+};
+
+// Guarda qual pergunta está sendo mostrada
+let perguntaAtual = 0;
+
+// Guarda as respostas do usuário
+const respostasDoUsuario = {};
+
+// Pegando elementos do HTML
+const quizContainer = document.getElementById("quizContainer");
+const infoQuestao = document.getElementById("infoQuestao");
+const textoPergunta = document.getElementById("pergunta");
+const containerOpcoes = document.getElementById("opcoes");
+const botaoVoltar = document.getElementById("btnVoltar");
+const botaoAvancar = document.getElementById("btnAvancar");
+const containerResultado = document.getElementById("resultado");
+const botaoIniciar = document.getElementById("btnIniciar");
+
+// Função para iniciar o quiz
+function iniciarQuiz() {
+    botaoIniciar.style.display = "none";
+    quizContainer.style.display = "block";
+    carregarPergunta();
+}
+
+// Carrega pergunta na tela
+function carregarPergunta() {
+    const p = perguntas[perguntaAtual];
+
+    infoQuestao.textContent = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
+
+    if (perguntaAtual === perguntas.length - 1) {
+        alert("Atenção! Você está prestes a responder a última pergunta!");
+    }
+
+    textoPergunta.textContent = p.pergunta;
+
+    containerOpcoes.innerHTML = "";
+
+    // forEach = repete algo para cada item da lista
+    p.opcoes.forEach((opcao, i) => {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+
+        input.type = "checkbox";
+        input.name = "opcao";
+        input.value = i;
+
+        if (respostasDoUsuario[perguntaAtual] === i) {
+            input.checked = true;
+        }
+
+        // Garante apenas 1 marcado
+        input.onclick = () => {
+            document.querySelectorAll("input[name='opcao']").forEach(cb => cb.checked = false);
+            input.checked = true;
+            respostasDoUsuario[perguntaAtual] = i;
+        };
+
+        label.appendChild(input);
+        label.append(" " + opcao);
+
+        containerOpcoes.appendChild(label);
+        containerOpcoes.appendChild(document.createElement("br"));
+    });
+
+    botaoVoltar.style.display = perguntaAtual === 0 ? "none" : "inline-block";
+
+    botaoAvancar.textContent = perguntaAtual === perguntas.length - 1 ? "Finalizar" : "Avançar";
+}
+
+// Avança para próxima pergunta ou finaliza
+function avancar() {
+    if (respostasDoUsuario[perguntaAtual] === undefined) {
+        alert("Selecione uma resposta para continuar.");
+        return;
+    }
+
+    if (perguntaAtual < perguntas.length - 1) {
+        perguntaAtual++;
+        carregarPergunta();
+    } else {
+        calcularResultado();
+    }
+}
+
+// Volta uma pergunta
+function voltar() {
+    if (perguntaAtual > 0) {
+        perguntaAtual--;
+        carregarPergunta();
+    }
+}
+
+// Calcula o resultado final
+function calcularResultado() {
+    // Zera pontuações usando forEach
+    listaPersonagens.forEach(p => {
+        pontuacaoPersonagens[p] = 0;
+    });
+
+    // Loop para somar pontos das respostas
+    for (let indicePergunta in respostasDoUsuario) {
+        const indiceResposta = respostasDoUsuario[indicePergunta];
+        const personagens = perguntas[indicePergunta].pontos[indiceResposta];
+
+        // Cada personagem recebe 1 ponto
+        personagens.forEach(p => {
+            pontuacaoPersonagens[p]++;
+        });
+    }
+
+    let personagemFinal = "";
+    let maior = -1;
+
+    // Achar o personagem com maior pontuação
+    listaPersonagens.forEach(p => {
+        if (pontuacaoPersonagens[p] > maior) {
+            maior = pontuacaoPersonagens[p];
+            personagemFinal = p;
+        }
+    });
+
+    quizContainer.style.display = "none";
+
+    containerResultado.style.display = "block";
+    containerResultado.innerHTML = `
+        <img src="./assets/imgs/${personagemFinal}2.jpg" alt="Imagem do personagem">
+        
+        <h2>Seu personagem é:</h2>
+        <h1>${personagemFinal.toUpperCase()}</h1>
+        <p>${{
+            soluco: "Você sempre pensa antes de agir. Gosta de ajudar as pessoas. Prefere resolver o problema na calma. Aprende as coisas rápido. Sempre tenta fazer o que você acha que é certo.",
+            astrid: "Você é corajoso. Não foge de desafios, não importa s são difíceis. Protege quem gosta com unhas e dentes. Determinado ao extremo. Lidera sem medo de suas escolhas, tem total certeza delas.",
+            cabecaQuente: "Explosivo e intenso. Age muito rápido. Fala o que pensa na hora. Incansável quando quer algo de alguém. Sempre pronto para o que der e vier.",
+            melequento: "Criativo e destemido. Improvisa muito bem. Tem um humor forte  cativante. Sempre dá um jeito, não importa se é um jeito ruim.",
+            pernaDePeixe: "Curioso e estudioso. Analisa tudo quando pode. Sempre observando as coisas a sua volta. Aprende com detalhes. Pensamento estratégico.",
+            cabecaDura: "Teimoso mas forte. Não desiste fácil do que quer. Resiste a tudo. Vai até o fim, mesmo se te derrubarem um milhão de vezes. Determinação é seu maior poder."
+        }[personagemFinal]}</p>
+        <button onclick="reiniciarQuiz()">Refazer Quiz</button>
+        <button onclick="irParaDashboard()">Ver Gráficos</button>
+    `;
+}
+
+// Reinicia tudo
+function reiniciarQuiz() {
+    listaPersonagens.forEach(p => {
+        pontuacaoPersonagens[p] = 0;
+    });
+
+    // remove cada resposta usando entries + forEach
+Object.entries(respostasDoUsuario).forEach(([chave]) => {
+    delete respostasDoUsuario[chave]
+})
+
+    perguntaAtual = 0;
+
+    containerResultado.style.display = "none";
+    botaoIniciar.style.display = "block";
+}
+
+function irParaDashboard() {
+    window.location = ""
+}
+
+</script>
+
+</body>
+</html>
