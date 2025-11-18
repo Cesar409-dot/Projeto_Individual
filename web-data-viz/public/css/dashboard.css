@@ -1,0 +1,208 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap');
+
+*, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Sirin Stencil", sans-serif;
+}
+
+:root {
+    --cor-um-texto: #F2EDD0;
+    --cor-dois-texto: #80E7F2;
+    --cor-um-fundo: #65655D;
+    --cor-dois-fundo: #026873;
+    --cor-reserva: #9FCE68;
+}
+
+body{
+    background-color: var(--cor-um-fundo);
+    height: 100vh;
+}
+
+.dashboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.conteudo {
+    display: flex;
+    width: 95%;
+    height: 95vh;
+    background-color: var(--cor-dois-fundo);
+
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(0, 0, 0, 0.318);
+    width: 15%;
+    align-items: center;
+}
+
+.menu img {
+    width: 100%;
+    height: 25%;
+    margin-bottom: 60px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--cor-dois-texto);
+    font-size: 1.9rem;
+    font-weight: 900;
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 30px;
+    height: 7%;
+    transition: 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: var(--cor-dois-texto);
+    color: var(--cor-dois-fundo);
+    border-left: 8px solid var(--cor-reserva);
+}
+
+.page {
+    height: 5%;
+    background-color: var(--cor-dois-texto);
+    color: var(--cor-dois-fundo);
+    border-left: 8px solid var(--cor-reserva);
+}
+
+.menu button {
+    margin-top: 260px;
+    width: 100%;
+    height: 8%;
+    background-color: var(--cor-dois-fundo);
+    color: var(--cor-dois-texto);
+    border: 0.1px solid var(--cor-dois-fundo);
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    transition: 0.5s ease;
+}
+
+.menu button:hover {
+    color: var(--cor-dois-fundo);
+    background-color: var(--cor-dois-texto);
+}
+
+.graficos {
+    width: 100%;
+    height: 100%;
+}
+
+.mensagem {
+    width: 100%;
+    height: 15%;
+    align-items: center;
+    justify-content: center;
+}
+
+.mensagem p {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--cor-um-texto);
+    border-bottom: rgba(0, 0, 0, 0.318);
+    margin-top: 20px;
+}
+
+.kpis {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top:1px solid rgba(0, 0, 0, 0.318) ;
+    border-bottom:1px solid rgba(0, 0, 0, 0.318) ;
+}
+
+.pontos {
+    border: 5px solid var(--cor-dois-texto);
+    width: 20%;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.297);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--cor-um-texto);
+}
+
+.pontos p{
+    margin: top 10px; ;
+    font-size: 2rem;
+    color: var(--cor-reserva);
+    font-weight: 500;
+}
+
+.personalidade {
+    border: 5px solid var(--cor-dois-texto);
+    width: 20%;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.297);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--cor-um-texto);
+}
+
+.personalidade p{
+    margin: top 10px; ;
+    font-size: 2rem;
+    color: var(--cor-reserva);
+    font-weight: 500;
+}
+
+.todos {
+    border: 5px solid var(--cor-dois-texto);
+    width: 20%;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.297);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--cor-um-texto);
+}
+
+.todos p {
+    margin: top 10px; ;
+    font-size: 2rem;
+    color: var(--cor-reserva);
+    font-weight: 500;
+}
+
+.grafico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid blue;
+    width: 100%;
+    height: 58%;
+}
+
+.barras {
+    border: 5px solid blueviolet;
+    width: 40%;
+    height: 100%;
+}
+
+.radar {
+    border: 5px solid pink;
+    width: 30%;
+    height: 100%;
+}
+
+.global {
+    border: 5px solid peru;
+    width: 30%;
+    height: 100%;
+
+}
