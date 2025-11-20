@@ -1,21 +1,17 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
-
-    var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    FROM medida
-                    WHERE fk_aquario = ${idAquario}
-                    ORDER BY id DESC LIMIT ${limite_linhas}`;
+function buscarUltimasMedidas(fkusuario, limite_linhas) {
+    console.log(`model`)
+    var instrucaoSql = `SELECT fkusuario, soluco, astrid, melequento, pernadepeixe, cabecadura, cabecaquente
+                            FROM resposta
+                                WHERE fkusuario = ${fkusuario};
+                                    ORDER BY fkusuario DESC LIMIT ${limite_linhas}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+/*function buscarMedidasEmTempoReal(idAquario) {
 
     var instrucaoSql = `SELECT 
         dht11_temperatura as temperatura, 
@@ -28,8 +24,8 @@ function buscarMedidasEmTempoReal(idAquario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
+*/
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarUltimasMedidas
+    //buscarMedidasEmTempoReal
 }

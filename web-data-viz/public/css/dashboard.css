@@ -31,7 +31,7 @@ body{
 
 .conteudo {
     display: flex;
-    width: 95%;
+    width: 98%;
     height: 95vh;
     background-color: var(--cor-dois-fundo);
 
@@ -183,26 +183,28 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid blue;
     width: 100%;
     height: 58%;
+    border: 1px solid rgba(0, 0, 0, 0.318) 
 }
 
 .barras {
-    border: 5px solid blueviolet;
+    border-right: 1px solid rgba(0, 0, 0, 0.318) ;
     width: 40%;
     height: 100%;
+    background-color: rgba(245, 245, 245, 0.533);
 }
 
 .radar {
     border: 5px solid pink;
     width: 30%;
     height: 100%;
+    background-color: rgba(245, 245, 245, 0.533)
 }
 
 .global {
     border: 5px solid peru;
     width: 30%;
     height: 100%;
-
+    background-color: rgba(245, 245, 245, 0.533)
 }
