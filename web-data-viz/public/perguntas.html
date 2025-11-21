@@ -47,54 +47,54 @@
 // Lista de perguntas do quiz
 const perguntas = [
     {
-        pergunta: "1. Como você prefere resolver seus conflitos?",
-        opcoes: ["Conversando", "Com atitude", "Mais rápido possível", "Sem pressa", "Batendo boca", "Usando a criatividade"],
-        pontos: [["soluco", "pernaDePeixe"], ["astrid", "cabecaQuente"], ["melequento", "cabecaDura", "cabecaQuente"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente"], ["soluco", "pernaDePeixe"]]
+        pergunta: "1. O que mais te faz perder a paciência",
+        opcoes: ["Falta de lógica", "Falta de comprometimento", "Rotina chata", "Bagunça sem necessidade", "Regras demais", "Não receber reconhecimento"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "2. Qual dessas qualidades mais predomina em você?",
-        opcoes: ["Criatividade", "Coragem", "Esperteza", "Cautela", "Teimosia", "Empatia"],
-        pontos: [["soluco"], ["astrid", "cabecaQuente"], ["melequento"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente", "melequento"], ["pernaDePeixe", "astrid"]]
+        pergunta: "2. O que te motiva?",
+        opcoes: ["Criar algo diferente", "Superar desafios", "Se divertir", "Entender o mundo", "Buscar emoção", "Ser o melhor"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "3. O que mais te motiva, quando algo da errado, mas não era para dar?",
-        opcoes: ["Continuar fazendo a coisa certa", "Conversar com alguém que gosto", "Ser reconhecido pelo feito", "Aprender coisas novas, para que não se repita", "Provar meu valor", "Ajudar os outros, para que não aconteça com eles"],
-        pontos: [["soluco"], ["astrid", "cabecaQuente"], ["melequento", "cabecaDura"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente", "astrid", "melequento"], ["astrid", "pernaDePeixe"]]
+        pergunta: "3. Qual ambiente te faz sentir mais confortável?",
+        opcoes: ["Um lugar cheio de possibilidades", "Um espaço organizado e produtivo", "Um lugar onde posso ser imprevisível", "Um ambiente tranquilo e estável", "Algo cheio de movimento", "Um lugar onde eu possa mostrar minhas habilidades"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "4. Qual seu maior ponto forte?",
-        opcoes: ["Empatia", "Determinação", "Confiança", "Inteligência", "Persistência", "Criatividade"],
-        pontos: [["soluco"], ["astrid", "cabecaQuente"], ["melequento", "astrid", "soluco"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente"], ["soluco", "pernaDePeixe"]]
+        pergunta: "4. Qual dessas frases mais combina com você?",
+        opcoes: ["“Tudo tem outra forma de ser feito.”", "“Disciplina traz resultados.”", "“A vida é muito curta para ser séria demais.”", "“Conhecimento é meu guia.”", "“Vamos ver no que dá.”", "“Eu sei do que sou capaz.”"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "5. Como você reage quando algo dá errado?",
-        opcoes: ["Penso em outra solução com calma", "Não desisto de primeira", "Improviso algo na hora", "Peço ajuda a alguém", "Fico irritado, mas sigo em frente", "Sem perder tempo penso no próximo passo"],
-        pontos: [["soluco", "astrid"], ["cabecaDura", "cabecaQuente"], ["melequento", "astrid"], ["pernaDePeixe"], ["cabecaQuente", "melequento"], ["soluco"]]
+        pergunta: "5.O que você mais valoriza em si mesmo?",
+        opcoes: ["Criatividade", "Determinação", "Espontaneidade", "Sabedoria", "Coragem", "Autoconfiança"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "6. No seu grupo de amigos, quem é você?",
-        opcoes: ["O conselheiro", "O protetor", "O engraçado", "O estudioso", "O competitivo", "O leal"],
-        pontos: [["soluco", "astrid"], ["astrid", "melequento"], ["melequento"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente"], ["soluco", "astrid", "melequento"]]
+        pergunta: "6. Como você toma decisões importantes?",
+        opcoes: ["Pesquisando e considerando novas alternativas", "Pensando nos objetivos e no resultado", "Seguindo o que parece mais divertido", "Avaliando prós e contras com calma", "Tomando a decisão rapidamente", "Escolhendo o que te deixa em destaque"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "7. O que você mais valoriza em alguém?",
-        opcoes: ["Tranquilidade", "Força de vontade", "Criatividade", "Inteligência", "Persistência", "Amizades verdadeiras"],
-    pontos: [["soluco", "astrid"], ["astrid", "cabecaQuente"], ["soluco","melequento"], ["pernaDePeixe"], ["cabecaDura", "cabecaQuente"], ["soluco", "astrid"]]
+        pergunta: "7. Como você lida com críticas?",
+        opcoes: ["Reflete e tenta melhorar", "Usa como motivação", "Não leva muito a sério", "Analisa se faz sentido", "Impulsivamente", "Defendendo seu ponto com firmeza"],
+    pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "8. Como você toma decisões sob pressão?",
-        opcoes: ["Pensando com calma", "Seguindo meu instinto", "Analisando as vantagens que tenho", "Converso com alguém para ter certeza", "Decidindo o mais rápido possível", "Peço opinião apenas a amigos próximos"],
-        pontos: [["soluco", "astrid"], ["cabecaQuente", "melequento", "cabecaDura"], ["melequento", "cabecaDura", "cabecaQuente"], ["pernaDePeixe"], ["cabecaDura"], ["melequento", "astrid", "pernaDePeixe"]]
+        pergunta: "8. Quando algo dá errado, você…",
+        opcoes: ["Reimagina o plano", "Corrige e segue", "Tenta de outro jeito", "Analisa o que falhou", "Age de novo rapidamente", "Se esforça para provar que dá conta"],
+       pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "9. O que você faria se estivesse em uma situação perigosa?",
-        opcoes: ["Criaria um plano para sair dela", "Protegeria meus amigos", "Tentaria sair do perigo", "Buscaria mais informações antes de agir", "Agiria o mais rápido possível", "Esperaria uma oportunidade para acabar com o perigo"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaQuente"], ["cabecaDura"]]
+        pergunta: "9. O que você costuma fazer ao começar algo novo?",
+        opcoes: ["Testar ideias diferentes", "Criar um plano claro", "Seguir o que der vontade na hora", "Pesquisar primeiro", "Mergulhar sem pensar muito", "Tentar ser o melhor desde o início"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     },
     {
-        pergunta: "10. Qual dessas frases combina mais com você?",
-        opcoes: ["Sempre há um jeito melhor de resolver as coisas", "Nunca deixo ninguém para trás em nenhuma hipótese", "Eu me viro muito bem sozinho", "Quero aprender o que posso para me prevenir", "Sei que posso confiar em meus amigos", "Acredito em mim mesmo, para resolver a situação sozinho"],
-        pontos: [["soluco"], ["astrid", "cabecaQuente"], ["melequento", "astrid"], ["pernaDePeixe", "soluco"], ["cabecaDura", "cabecaQuente"], ["melequento"]]
+        pergunta: "10. Qual é sua maior força social?",
+        opcoes: ["Empatia", "Confiabilidade", "Humor", "Escuta", "Energia", "Segurança"],
+        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
     }
 ];
 

@@ -1,14 +1,10 @@
 var medidaModel = require("../models/medidaModel");
 
-function buscarUltimasMedidas(req, res) {
-    console.log(`controler`)
-    const limite_linhas = 7;
+function resultadoQuiz(req, res) { 
 
-    var fkusuario = req.params.fkusuario;
-
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    medidaModel.buscarUltimasMedidas(fkusuario, limite_linhas).then(function (resultado) {
+    var fkusuario = req.body.idServer
+    console.log(`Recebendo a `);
+    medidaModel.resultadoQuiz(fkusuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -21,28 +17,97 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
+function resultadoPersona(req, res) { 
 
-// function buscarMedidasEmTempoReal(req, res) {
+    var fkusuario = req.body.idServer
+    console.log(`Recebendo dados do quiz`);
 
-//     var fkusuario = req.params.fkusuario;
+    medidaModel.resultadoPersona(fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
-//     console.log(`Recuperando medidas em tempo real`);
+function resultadoGlobal(req, res) { 
 
-//     medidaModel.buscarMedidasEmTempoReal(fkusuario).then(function (resultado) {
-//         if (resultado.length > 0) {
-//             res.status(200).json(resultado);
-//         } else {
-//             res.status(204).send("Nenhum resultado encontrado!")
-//         }
-//     }).catch(function (erro) {
-//         console.log(erro);
-//         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-//         res.status(500).json(erro.sqlMessage);
-//     });
-// }
+    console.log(`Recebendo dados globais`);
+
+    medidaModel.resultadoGlobal().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function resultadoKpiBar(req, res) { 
+var fkusuario = req.body.idServer
+    console.log(`Recebendo dados globais`);
+
+    medidaModel.resultadoKpiBar(fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function resultadoKpiRadar(req, res) { 
+var fkusuario = req.body.idServer
+    console.log(`Recebendo dados globais`);
+
+    medidaModel.resultadoKpiRadar(fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function resultadoKpiGlobal(req, res) { 
+var fkusuario = req.body.idServer
+    console.log(`Recebendo dados globais`);
+
+    medidaModel.resultadoKpiGlobal(fkusuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 module.exports = {
-    buscarUltimasMedidas
-    // buscarMedidasEmTempoReal
-
+    resultadoQuiz,
+    resultadoPersona,
+    resultadoGlobal,
+    resultadoKpiBar,
+    resultadoKpiRadar,
+    resultadoKpiGlobal
 }
