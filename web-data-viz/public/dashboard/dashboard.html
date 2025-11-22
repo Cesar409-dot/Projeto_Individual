@@ -118,7 +118,7 @@
                             },
                             {
                                 label: 'Astrid',
-                                data: [soluco],
+                                data: [astrid],
                                 backgroundColor: '#FC7CAD',
                                 pointRadius: 4.5,
                                 borderWidth: 0,
@@ -238,7 +238,7 @@
                                     fill: false,
                                     backgroundColor: 'red',
                                     borderColor: 'red',
-                                    pointBackgroundColor: 'red',
+                                    backgroundColor: 'red',
                                     pointBorderColor: 'red'
                                 }
                             ]
@@ -354,7 +354,8 @@
             body: JSON.stringify({
                 idServer: fkusuarioVar,
             }),
-        }).then(function (response) {
+        }).then(
+            function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
