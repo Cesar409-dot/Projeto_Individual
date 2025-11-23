@@ -38,7 +38,7 @@ INSERT INTO quiz VALUES
 (1);
 
 
-ALTER VIEW vwResultado AS 
+CREATE VIEW vwResultado AS 
 SELECT  
     (SELECT ROUND((s.soluco / 10) * 100, 0)
      FROM resposta AS s
@@ -85,7 +85,7 @@ LIMIT 1;
 
 
 
-	ALTER VIEW vwPersona AS
+	CREATE VIEW vwPersona AS
 		SELECT 
         (SELECT s.soluco
      FROM resposta AS s
@@ -130,7 +130,7 @@ SELECT * FROM vwPersona;
 SELECT * FROM resposta;
 
 
-ALTER VIEW vwGlobal AS
+CREATE VIEW vwGlobal AS
 SELECT 
     ROUND(
         (SELECT COUNT(*) 
@@ -283,7 +283,7 @@ CREATE VIEW vwKpiBar AS
 FROM vwGlobal;
 
     
-    ALTER VIEW vwKpiBar AS
+    CREATE VIEW vwKpiBar AS
 SELECT
     CASE
         WHEN Soluco >= Astrid
@@ -331,7 +331,7 @@ SELECT * FROM vwKpiBar;
 
 
 
-ALTER VIEW vwKpiRadar AS
+CREATE VIEW vwKpiRadar AS
 SELECT
     CASE
         WHEN Soluco >= Astrid
