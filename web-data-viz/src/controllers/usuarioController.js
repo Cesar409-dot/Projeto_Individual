@@ -87,19 +87,19 @@ function perguntar(req, res) {
 
     // Faça as validações dos valores
     if (soluco == undefined) {
-        res.status(400).send("Seu nome está undefined!");
+        res.status(400).send("Soluço está undefined!");
     } else if (astrid == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Astrid está undefined!");
     }else if (cabecaQuente == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Cabeça Quente está undefined!");
     }else if (melequento == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Melequento está undefined!");
     }else if (pernaDePeixe == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Perna de Peixe está undefined!");
     }else if (cabecaDura == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Cabeça Dura está undefined!");
     } else if (id == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+        res.status(400).send("Seu id está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
@@ -112,7 +112,7 @@ function perguntar(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        "\nHouve um erro ao realizar a inserção de dados no mysql Erro: ",
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);

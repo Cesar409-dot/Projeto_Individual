@@ -166,7 +166,7 @@ function resultadoGlobal() {
     return database.executar(instrucaoSql);
 }
 
-    function resultadoKpiGlobal(fkusuario) {
+    function resultadoKpiGlobal() {
 var instrucaoSql = `SELECT 
     CASE
         WHEN Soluco >= Astrid 

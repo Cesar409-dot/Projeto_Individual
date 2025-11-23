@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap');
 
+/* Reset básico */
 *, body {
     margin: 0;
     padding: 0;
@@ -17,13 +18,18 @@
     --cor-reserva: #9FCE68;
 }
 
-body{
+body {
     background-color: var(--cor-um-fundo);
+    
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    
     flex-direction: column;
+    
+    align-items: center;
+    
+    justify-content: center;
+    
+    min-height: 100vh;
 }
 
 #quizContainer {
@@ -32,15 +38,19 @@ body{
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    
     display: none;
+    
     color: var(--cor-um-texto);
-    text-align: center;
+    
+    flex-direction: column;
+    align-items: center;
 }
 
 #btnIniciar {
     padding: 30px 60px;
     font-size: 2rem;
-    margin-top: 200px;
+    margin-top: 50px; 
     cursor: pointer;
     background: var(--cor-dois-fundo);
     color: var(--cor-dois-texto);
@@ -52,7 +62,6 @@ body{
 #btnIniciar:hover {
     background: var(--cor-dois-texto);
     color: var(--cor-dois-fundo);
-
 }
 
 #pergunta {
@@ -60,30 +69,46 @@ body{
     margin-bottom: 15px;
     font-weight: bold;
     color: var(--cor-um-texto);
+    text-align: center;
 }
 
-/* Container de opções em duas colunas */
+
 #opcoes {
     display: flex;
-    flex-wrap: wrap; /* permite quebrar linha */
+    
+    flex-wrap: wrap; 
+    
     justify-content: center;
-    gap: 10px; /* espaço entre opções */
+    
+    gap: 10px;
+    
+    width: 100%;
 }
 
-/* Cada opção ocupa metade do contêiner (aproximadamente) */
 #opcoes label {
-    flex: 0 0 45%; /* 45% de largura, 2 colunas */
-    text-align: center;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    
+    width: 45%;
+    
     cursor: pointer;
     color: var(--cor-dois-texto);
+    
     margin-bottom: 10px;
 }
 
+
 #botoesNavegacao {
     display: flex;
+    
     justify-content: center;
-    gap: 10px;
+    
+    gap: 15px;
+    
     margin-top: 15px;
+    width: 100%;
 }
 
 #botoesNavegacao button {
@@ -103,6 +128,11 @@ body{
 
 #resultado {
     display: none;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
     background: var(--cor-dois-fundo);
     width: 500px;
     padding: 20px;
@@ -110,12 +140,12 @@ body{
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     text-align: center;
     color: var(--cor-um-texto);
-    margin-top: 20px;
 }
 
 #resultado img {
     margin-bottom: 15px;
     border-radius: 10px;
+    max-width: 100%;
 }
 
 button {
@@ -135,8 +165,11 @@ button:hover {
     color: var(--cor-dois-fundo);
 }
 
-/* Garantir que o botão de refazer quiz fique igual */
 #resultado button {
-    display: inline-block;
-    margin-top: 20px;
+    margin: 20px 5px 0 5px;
+}
+
+.imgVencedora {
+    width: 250px;
+    height: 250px;
 }

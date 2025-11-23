@@ -11,287 +11,331 @@
 
 <body>
 
-   <div id="container">
+    <div id="container">
 
-    <!-- Botão que inicia o quiz. Antes de clicar nele nada aparece. -->
-    <button id="btnIniciar" onclick="iniciarQuiz()">Iniciar Quiz</button>
+        <button id="btnIniciar" onclick="iniciarQuiz()">Iniciar Quiz</button>
 
-    <!-- Container do quiz (perguntas e respostas), escondido até o usuário clicar em "Iniciar" -->
-    <div id="quizContainer">
+        <div id="quizContainer" style="display: none;">
 
-        <h2>Quiz de Personalidade</h2>
+            <h2>Quiz de Personalidade</h2>
 
-        <!-- Exibe qual número da pergunta o usuário está respondendo -->
-        <p id="infoQuestao"></p>
+            <p id="infoQuestao"></p>
 
-        <!-- Texto principal da pergunta -->
-        <p id="pergunta"></p>
+            <p id="pergunta"></p>
 
-        <!-- Espaço onde as opções da pergunta são inseridas dinamicamente -->
-        <div id="opcoes"></div>
+            <div id="opcoes"></div>
 
-        <!-- Botões de navegação -->
-        <div id="botoesNavegacao">
-            <button id="btnVoltar" onclick="voltar()">Voltar</button>
-            <button id="btnAvancar" onclick="avancar()">Avançar</button>
+            <div id="botoesNavegacao">
+                <button id="btnVoltar" onclick="voltar()">Voltar</button>
+                <button id="btnAvancar" onclick="avancar()">Avançar</button>
+            </div>
         </div>
+
+        <div id="resultado"></div>
+
     </div>
-
-    <!-- Resultado final, aparece só depois da última pergunta -->
-    <div id="resultado"></div>
-
-</div>
 
 
     <script>
-// Lista de perguntas do quiz
-const perguntas = [
-    {
-        pergunta: "1. O que mais te faz perder a paciência",
-        opcoes: ["Falta de lógica", "Falta de comprometimento", "Rotina chata", "Bagunça sem necessidade", "Regras demais", "Não receber reconhecimento"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "2. O que te motiva?",
-        opcoes: ["Criar algo diferente", "Superar desafios", "Se divertir", "Entender o mundo", "Buscar emoção", "Ser o melhor"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "3. Qual ambiente te faz sentir mais confortável?",
-        opcoes: ["Um lugar cheio de possibilidades", "Um espaço organizado e produtivo", "Um lugar onde posso ser imprevisível", "Um ambiente tranquilo e estável", "Algo cheio de movimento", "Um lugar onde eu possa mostrar minhas habilidades"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "4. Qual dessas frases mais combina com você?",
-        opcoes: ["“Tudo tem outra forma de ser feito.”", "“Disciplina traz resultados.”", "“A vida é muito curta para ser séria demais.”", "“Conhecimento é meu guia.”", "“Vamos ver no que dá.”", "“Eu sei do que sou capaz.”"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "5.O que você mais valoriza em si mesmo?",
-        opcoes: ["Criatividade", "Determinação", "Espontaneidade", "Sabedoria", "Coragem", "Autoconfiança"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "6. Como você toma decisões importantes?",
-        opcoes: ["Pesquisando e considerando novas alternativas", "Pensando nos objetivos e no resultado", "Seguindo o que parece mais divertido", "Avaliando prós e contras com calma", "Tomando a decisão rapidamente", "Escolhendo o que te deixa em destaque"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "7. Como você lida com críticas?",
-        opcoes: ["Reflete e tenta melhorar", "Usa como motivação", "Não leva muito a sério", "Analisa se faz sentido", "Impulsivamente", "Defendendo seu ponto com firmeza"],
-    pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "8. Quando algo dá errado, você…",
-        opcoes: ["Reimagina o plano", "Corrige e segue", "Tenta de outro jeito", "Analisa o que falhou", "Age de novo rapidamente", "Se esforça para provar que dá conta"],
-       pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "9. O que você costuma fazer ao começar algo novo?",
-        opcoes: ["Testar ideias diferentes", "Criar um plano claro", "Seguir o que der vontade na hora", "Pesquisar primeiro", "Mergulhar sem pensar muito", "Tentar ser o melhor desde o início"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    },
-    {
-        pergunta: "10. Qual é sua maior força social?",
-        opcoes: ["Empatia", "Confiabilidade", "Humor", "Escuta", "Energia", "Segurança"],
-        pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
-    }
-];
 
+        // Array contendo todas as perguntas.
+        // Cada item é um objeto com: texto da pergunta, lista de opções (texto) e pontos (quem ganha ponto em cada opção).
+        const perguntas = [
+            {
+                pergunta: "1. O que mais te faz perder a paciência?",
+                opcoes: ["Falta de lógica", "Falta de comprometimento", "Rotina chata", "Bagunça sem necessidade", "Regras demais", "Não receber reconhecimento"],
+                // Ex: Se escolher a opção 0 ("Falta de lógica"), o personagem "soluco" ganha ponto.
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "2. O que te motiva?",
+                opcoes: ["Criar algo diferente", "Superar desafios", "Se divertir", "Entender o mundo", "Buscar emoção", "Ser o melhor"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "3. Qual ambiente te faz sentir mais confortável?",
+                opcoes: ["Um lugar cheio de possibilidades", "Um espaço organizado e produtivo", "Um lugar onde posso ser imprevisível", "Um ambiente tranquilo e estável", "Algo cheio de movimento", "Um lugar onde eu possa mostrar minhas habilidades"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "4. Qual dessas frases mais combina com você?",
+                opcoes: ["“Tudo tem outra forma de ser feito.”", "“Disciplina traz resultados.”", "“A vida é muito curta para ser séria demais.”", "“Conhecimento é meu guia.”", "“Vamos ver no que dá.”", "“Eu sei do que sou capaz.”"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "5. O que você mais valoriza em si mesmo?",
+                opcoes: ["Criatividade", "Determinação", "Espontaneidade", "Sabedoria", "Coragem", "Autoconfiança"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "6. Como você toma decisões importantes?",
+                opcoes: ["Pesquisando e considerando novas alternativas", "Pensando nos objetivos e no resultado", "Seguindo o que parece mais divertido", "Avaliando prós e contras com calma", "Tomando a decisão rapidamente", "Escolhendo o que te deixa em destaque"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "7. Como você lida com críticas?",
+                opcoes: ["Reflete e tenta melhorar", "Usa como motivação", "Não leva muito a sério", "Analisa se faz sentido", "Impulsivamente", "Defendendo seu ponto com firmeza"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "8. Quando algo dá errado, você…",
+                opcoes: ["Reimagina o plano", "Corrige e segue", "Tenta de outro jeito", "Analisa o que falhou", "Age de novo rapidamente", "Se esforça para provar que dá conta"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "9. O que você costuma fazer ao começar algo novo?",
+                opcoes: ["Testar ideias diferentes", "Criar um plano claro", "Seguir o que der vontade na hora", "Pesquisar primeiro", "Mergulhar sem pensar muito", "Tentar ser o melhor desde o início"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            },
+            {
+                pergunta: "10. Qual é sua maior força social?",
+                opcoes: ["Empatia", "Confiabilidade", "Humor", "Escuta", "Energia", "Segurança"],
+                pontos: [["soluco"], ["astrid"], ["melequento"], ["pernaDePeixe"], ["cabecaDura"], ["cabecaQuente"]]
+            }
+        ];
 
-// Lista de personagens usada para percorrer mais fácil
-const listaPersonagens = ["soluco", "astrid", "cabecaQuente", "melequento", "pernaDePeixe", "cabecaDura"];
+        // Lista simples com os nomes (chaves) dos personagens para facilitar loops.
+        const listaPersonagens = ["soluco", "astrid", "cabecaQuente", "melequento", "pernaDePeixe", "cabecaDura"];
 
-// Pontuação inicial de cada personagem
-const pontuacaoPersonagens = {
-    soluco: 0,
-    astrid: 0,
-    cabecaQuente: 0,
-    melequento: 0,
-    pernaDePeixe: 0,
-    cabecaDura: 0
-};
-
-// Guarda qual pergunta está sendo mostrada
-let perguntaAtual = 0;
-
-// Guarda as respostas do usuário
-const respostasDoUsuario = {};
-
-// Pegando elementos do HTML
-const quizContainer = document.getElementById("quizContainer");
-const infoQuestao = document.getElementById("infoQuestao");
-const textoPergunta = document.getElementById("pergunta");
-const containerOpcoes = document.getElementById("opcoes");
-const botaoVoltar = document.getElementById("btnVoltar");
-const botaoAvancar = document.getElementById("btnAvancar");
-const containerResultado = document.getElementById("resultado");
-const botaoIniciar = document.getElementById("btnIniciar");
-
-// Função para iniciar o quiz
-function iniciarQuiz() {
-    botaoIniciar.style.display = "none";
-    quizContainer.style.display = "block";
-    carregarPergunta();
-}
-
-// Carrega pergunta na tela
-function carregarPergunta() {
-    const p = perguntas[perguntaAtual];
-
-    infoQuestao.textContent = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
-
-    if (perguntaAtual === perguntas.length - 1) {
-        alert("Atenção! Você está prestes a responder a última pergunta!");
-    }
-
-    textoPergunta.textContent = p.pergunta;
-
-    containerOpcoes.innerHTML = "";
-
-    // forEach = repete algo para cada item da lista
-    p.opcoes.forEach((opcao, i) => {
-        const label = document.createElement("label");
-        const input = document.createElement("input");
-
-        input.type = "checkbox";
-        input.name = "opcao";
-        input.value = i;
-
-        if (respostasDoUsuario[perguntaAtual] === i) {
-            input.checked = true;
-        }
-
-        // Garante apenas 1 marcado
-        input.onclick = () => {
-            document.querySelectorAll("input[name='opcao']").forEach(cb => cb.checked = false);
-            input.checked = true;
-            respostasDoUsuario[perguntaAtual] = i;
+        // Objeto que guardará a pontuação acumulada de cada um.
+        const pontuacaoPersonagens = {
+            soluco: 0,
+            astrid: 0,
+            cabecaQuente: 0,
+            melequento: 0,
+            pernaDePeixe: 0,
+            cabecaDura: 0
         };
 
-        label.appendChild(input);
-        label.append(" " + opcao);
 
-        containerOpcoes.appendChild(label);
-        containerOpcoes.appendChild(document.createElement("br"));
-    });
+        // Indica qual índice do array 'perguntas' estamos mostrando agora (0 a 9).
+        let perguntaAtual = 0;
 
-    botaoVoltar.style.display = perguntaAtual === 0 ? "none" : "inline-block";
+        // Array para guardar as respostas.
+        // Ex: Se na pergunta 0 o usuário escolheu a opção 2, o array será [2, ...].
+        let respostasDoUsuario = [];
 
-    botaoAvancar.textContent = perguntaAtual === perguntas.length - 1 ? "Finalizar" : "Avançar";
-}
+        // Capturando os elementos da tela para manipular seus textos e estilos.
+        const quizContainer = document.getElementById("quizContainer");
+        const infoQuestao = document.getElementById("infoQuestao");
+        const textoPergunta = document.getElementById("pergunta");
+        const containerOpcoes = document.getElementById("opcoes");
+        const botaoVoltar = document.getElementById("btnVoltar");
+        const botaoAvancar = document.getElementById("btnAvancar");
+        const containerResultado = document.getElementById("resultado");
+        const botaoIniciar = document.getElementById("btnIniciar");
 
-// Avança para próxima pergunta ou finaliza
-function avancar() {
-    if (respostasDoUsuario[perguntaAtual] === undefined) {
-        alert("Selecione uma resposta para continuar.");
-        return;
-    }
 
-    if (perguntaAtual < perguntas.length - 1) {
-        perguntaAtual++;
-        carregarPergunta();
-    } else {
-        calcularResultado();
-    }
-}
-
-// Volta uma pergunta
-function voltar() {
-    if (perguntaAtual > 0) {
-        perguntaAtual--;
-        carregarPergunta();
-    }
-}
-
-// Calcula o resultado final
-function calcularResultado() {
-    // Zera pontuações usando forEach
-    listaPersonagens.forEach(p => {
-        pontuacaoPersonagens[p] = 0;
-    });
-
-    // Loop para somar pontos das respostas
-    for (let indicePergunta in respostasDoUsuario) {
-        const indiceResposta = respostasDoUsuario[indicePergunta];
-        const personagens = perguntas[indicePergunta].pontos[indiceResposta];
-
-        // Cada personagem recebe 1 ponto
-        personagens.forEach(p => {
-            pontuacaoPersonagens[p]++;
-        });
-    }
-    fetch("/usuarios/perguntar", {
-        method: "POST",
-        headers: {
-    "Content-Type": "application/json",
-},
-    body: JSON.stringify({
-    solucoServer:pontuacaoPersonagens.soluco,
-    astridServer:pontuacaoPersonagens.astrid,
-    cabecaQuenteServer:pontuacaoPersonagens.cabecaQuente,
-    melequentoServer:pontuacaoPersonagens.melequento,
-    pernaDePeixeServer:pontuacaoPersonagens.pernaDePeixe,
-    cabecaDuraServer:pontuacaoPersonagens.cabecaDura,
-    idServer:sessionStorage.ID_USUARIO
-    }),
-})
-
-    let personagemFinal = "";
-    let maior = -1;
-
-    // Achar o personagem com maior pontuação
-    listaPersonagens.forEach(p => {
-        if (pontuacaoPersonagens[p] > maior) {
-            maior = pontuacaoPersonagens[p];
-            personagemFinal = p;
+        // Função chamada ao clicar em "Iniciar Quiz"
+        function iniciarQuiz() {
+            // Esconde o botão de início
+            botaoIniciar.style.display = "none";
+            // Mostra a div que contém as perguntas
+            quizContainer.style.display = "block";
+            // Chama a função que desenha a primeira pergunta
+            carregarPergunta();
         }
-    });
 
-    quizContainer.style.display = "none";
+        // Função principal: Desenha a pergunta e as opções na tela
+        function carregarPergunta() {
+            // Pega o objeto da pergunta atual baseado no índice
+            const p = perguntas[perguntaAtual];
 
-    containerResultado.style.display = "block";
-    containerResultado.innerHTML = `
-        <img src="./assets/imgs/${personagemFinal}2.jpg" alt="Imagem do personagem">
-        
-        <h2>Seu personagem é:</h2>
-        <h1>${personagemFinal.toUpperCase()}</h1>
-        <p>${{
-            soluco: "Você sempre pensa antes de agir. Gosta de ajudar as pessoas. Prefere resolver o problema na calma. Aprende as coisas rápido. Sempre tenta fazer o que você acha que é certo.",
-            astrid: "Você é corajoso. Não foge de desafios, não importa s são difíceis. Protege quem gosta com unhas e dentes. Determinado ao extremo. Lidera sem medo de suas escolhas, tem total certeza delas.",
-            cabecaQuente: "Explosivo e intenso. Age muito rápido. Fala o que pensa na hora. Incansável quando quer algo de alguém. Sempre pronto para o que der e vier.",
-            melequento: "Criativo e destemido. Improvisa muito bem. Tem um humor forte  cativante. Sempre dá um jeito, não importa se é um jeito ruim.",
-            pernaDePeixe: "Curioso e estudioso. Analisa tudo quando pode. Sempre observando as coisas a sua volta. Aprende com detalhes. Pensamento estratégico.",
-            cabecaDura: "Teimoso mas forte. Não desiste fácil do que quer. Resiste a tudo. Vai até o fim, mesmo se te derrubarem um milhão de vezes. Determinação é seu maior poder."
-        }[personagemFinal]}</p>
-        <button onclick="reiniciarQuiz()">Refazer Quiz</button>
-        <button onclick="irParaDashboard()">Ver Gráficos</button>
-    `;
-}
+            // Atualiza o texto "Pergunta X de Y"
+            infoQuestao.innerHTML = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
 
-// Reinicia tudo
-function reiniciarQuiz() {
-    listaPersonagens.forEach(p => {
-        pontuacaoPersonagens[p] = 0;
-    });
+            // Atualiza o título da pergunta
+            textoPergunta.innerHTML = p.pergunta;
 
-    // remove cada resposta usando entries + forEach
-Object.entries(respostasDoUsuario).forEach(([chave]) => {
-    delete respostasDoUsuario[chave]
-})
+            // Variável para construir o HTML das opções como uma grande string.
+            let htmlDasOpcoes = "";
 
-    perguntaAtual = 0;
+            // Loop para criar cada opção (radio/checkbox)
+            p.opcoes.forEach((opcao, indice) => {
+                // Verifica se o usuário já respondeu essa pergunta antes (se voltou a página).
+                // Se sim, marca o atributo 'checked'.
+                let checado = "";
+                if (respostasDoUsuario[perguntaAtual] === indice) {
+                    checado = "checked";
+                }
 
-    containerResultado.style.display = "none";
-    botaoIniciar.style.display = "block";
-}
+                // Concatena (soma) o HTML desta opção na string.
+                // Note o 'onclick': quando clicar, chama 'selecionarOpcao' passando o próprio input.
+                htmlDasOpcoes += `
+                    <label>
+                        <input type="checkbox" name="opcao" value="${indice}" onclick="selecionarOpcao(this)" ${checado}>
+                        ${opcao}
+                    </label>
+                    <br>
+                `;
+            });
 
-function irParaDashboard() {
-    window.location = "./dashboard/dashboard.html"
-}
+            // Injeta o HTML criado dentro da div de opções
+            containerOpcoes.innerHTML = htmlDasOpcoes;
 
+            // Controle de visibilidade do botão "Voltar"
+            // Se for a primeira pergunta (0), esconde o botão.
+            if (perguntaAtual === 0) {
+                botaoVoltar.style.display = "none";
+            } else {
+                botaoVoltar.style.display = "inline-block";
+            }
 
-</script>
+            // Controle do texto do botão "Avançar"
+            // Se for a última pergunta, muda o texto para "Finalizar".
+            if (perguntaAtual === perguntas.length - 1) {
+                botaoAvancar.innerHTML = "Finalizar";
+            } else {
+                botaoAvancar.innerHTML = "Avançar";
+            }
+        }
+
+        // Função para garantir que apenas uma opção seja marcada por vez
+        // (Simulando comportamento de Radio Button com Checkbox, conforme seu layout original)
+        function selecionarOpcao(inputClicado) {
+            // Seleciona todos os inputs com name="opcao"
+            const inputs = document.getElementsByName("opcao");
+
+            // Percorre todos e desmarca os que não forem o clicado
+            inputs.forEach(input => {
+                if (input !== inputClicado) {
+                    input.checked = false;
+                }
+            });
+
+            // Salva o índice da resposta escolhida (value) no array de respostas
+            // 'parseInt' garante que salvemos como número inteiro
+            respostasDoUsuario[perguntaAtual] = parseInt(inputClicado.value);
+        }
+
+        // Função chamada ao clicar em "Avançar"
+        function avancar() {
+            // Verifica se o usuário marcou algo na pergunta atual
+            if (respostasDoUsuario[perguntaAtual] === undefined) {
+                alert("Selecione uma resposta para continuar.");
+                return; // Para a função aqui se não tiver resposta
+            }
+
+            // Se não for a última pergunta, aumenta o contador e carrega a próxima
+            if (perguntaAtual < perguntas.length - 1) {
+                perguntaAtual++;
+                carregarPergunta();
+            } else {
+                // Se for a última, calcula quem venceu
+                calcularResultado();
+            }
+        }
+
+        // Função chamada ao clicar em "Voltar"
+        function voltar() {
+            // Só volta se não estiver na primeira pergunta
+            if (perguntaAtual > 0) {
+                perguntaAtual--;
+                carregarPergunta();
+            }
+        }
+
+        // Função que processa os pontos e mostra o resultado
+        function calcularResultado() {
+            // 1. Zera a pontuação de todos os personagens para garantir cálculo limpo
+            listaPersonagens.forEach(p => {
+                pontuacaoPersonagens[p] = 0;
+            });
+
+            // 2. Soma os pontos baseados nas respostas
+            // 'forEach' no array de respostas.
+            // 'respostaIndice' é a opção que o usuário marcou (ex: 0, 1, 2...)
+            // 'perguntaIndice' é o número da pergunta (ex: 0, 1, 2...)
+            respostasDoUsuario.forEach((respostaIndice, perguntaIndice) => {
+                // Busca na configuração da pergunta quem ganha ponto com essa resposta
+                const personagensQuePontuam = perguntas[perguntaIndice].pontos[respostaIndice];
+
+                // Dá 1 ponto para cada personagem listado ali
+                personagensQuePontuam.forEach(personagem => {
+                    pontuacaoPersonagens[personagem]++;
+                });
+            });
+
+            // Envio dos dados para o servidor (Fetch) - Mantido original
+            fetch("/usuarios/perguntar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    solucoServer: pontuacaoPersonagens.soluco,
+                    astridServer: pontuacaoPersonagens.astrid,
+                    cabecaQuenteServer: pontuacaoPersonagens.cabecaQuente,
+                    melequentoServer: pontuacaoPersonagens.melequento,
+                    pernaDePeixeServer: pontuacaoPersonagens.pernaDePeixe,
+                    cabecaDuraServer: pontuacaoPersonagens.cabecaDura,
+                    idServer: sessionStorage.ID_USUARIO
+                }),
+            });
+
+            // 3. Descobre qual personagem tem a maior pontuação
+            let personagemVencedor = "";
+            let maiorPontuacao = -1; // Começa baixo para qualquer ponto superar
+
+            listaPersonagens.forEach(p => {
+                if (pontuacaoPersonagens[p] > maiorPontuacao) {
+                    maiorPontuacao = pontuacaoPersonagens[p];
+                    personagemVencedor = p;
+                }
+            });
+
+            // 4. Manipulação da Tela Final
+            // Esconde a tela de perguntas
+            quizContainer.style.display = "none";
+            // Mostra a tela de resultado
+            containerResultado.style.display = "block";
+
+            // Objeto com as descrições (textos finais)
+            const descricoes = {
+                soluco: "Você sempre pensa antes de agir. Gosta de ajudar as pessoas. Prefere resolver o problema na calma. Aprende as coisas rápido. Sempre tenta fazer o que você acha que é certo.",
+                astrid: "Você é corajoso. Não foge de desafios, não importa se são difíceis. Protege quem gosta com unhas e dentes. Determinado ao extremo. Lidera sem medo de suas escolhas, tem total certeza delas.",
+                cabecaQuente: "Explosivo e intenso. Age muito rápido. Fala o que pensa na hora. Incansável quando quer algo de alguém. Sempre pronto para o que der e vier.",
+                melequento: "Criativo e destemido. Improvisa muito bem. Tem um humor forte e cativante. Sempre dá um jeito, não importa se é um jeito ruim.",
+                pernaDePeixe: "Curioso e estudioso. Analisa tudo quando pode. Sempre observando as coisas a sua volta. Aprende com detalhes. Pensamento estratégico.",
+                cabecaDura: "Teimoso mas forte. Não desiste fácil do que quer. Resiste a tudo. Vai até o fim, mesmo se te derrubarem um milhão de vezes. Determinação é seu maior poder."
+            };
+
+            // Injeta o HTML do resultado final (Imagem + Texto + Botões)
+            // Usamos toUpperCase() para deixar o nome do personagem em maiúsculo
+            containerResultado.innerHTML = `
+                <img src="./assets/imgs/${personagemVencedor}2.jpg" alt="Imagem do personagem" class = "imgVencedora">
+                <h2>Seu personagem é:</h2>
+                <h1>${personagemVencedor.toUpperCase()}</h1>
+                <p>${descricoes[personagemVencedor]}</p>
+                <button onclick="reiniciarQuiz()">Refazer Quiz</button>
+                <button onclick="irParaDashboard()">Ver Gráficos</button>
+            `;
+        }
+
+        // Função para resetar o jogo e começar de novo
+        function reiniciarQuiz() {
+            // Zera os pontos
+            listaPersonagens.forEach(p => {
+                pontuacaoPersonagens[p] = 0;
+            });
+
+            // Limpa o array de respostas (super simples, basta atribuir um array vazio)
+            respostasDoUsuario = [];
+
+            // Volta para a pergunta 0
+            perguntaAtual = 0;
+
+            // Troca as telas (esconde resultado, mostra botão iniciar)
+            containerResultado.style.display = "none";
+            botaoIniciar.style.display = "block";
+        }
+
+        // Redirecionamento
+        function irParaDashboard() {
+            window.location = "./dashboard/dashboard.html";
+        }
+
+    </script>
 
 </body>
 </html>

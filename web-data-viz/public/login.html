@@ -16,7 +16,6 @@
 
 <body>
 
-    <!--Header-->
 
     <header class="navbar">
         <img src="./assets/imgs/logoBanguela.png" alt="">
@@ -42,7 +41,7 @@
         <div class="form_box">
 
             <h2>Entrar na Conta</h2>
-
+            <p>Faça seu login para fazer o quiz!</p>
             <input type="email" placeholder="Email" id="iptEmail">
             <input type="password" placeholder="Senha" id="iptSenha">
 
@@ -95,7 +94,7 @@
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            alert(`Informe seu email e senha que colocou no cadastro`)
             return false;
         }
 
@@ -126,7 +125,7 @@
                         msg.innerHTML = `Login efetuado com sucesso!`
                     }, 1000);
                     setTimeout(function () {
-                        alert("Agora Você será redirecionado para fazer o quiz")
+                        alert("Redirecionando para o quiz")
                     }, 2000);
                     setTimeout(function () {
                         window.location = "perguntas.html";
@@ -135,7 +134,7 @@
                 })
 
             } else {
-
+                alert(`Verifique novamente seu login! Seu email ou sua senha estão incorretos!!!`)
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {

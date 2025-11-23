@@ -161,6 +161,11 @@ body{
     position: absolute;
 }
 
+.form_box p {
+    color: var(--cor-um-texto);
+    padding: 10px;
+}
+
 input:focus {
     outline: none;
     border: 3px solid var(--cor-reserva);
