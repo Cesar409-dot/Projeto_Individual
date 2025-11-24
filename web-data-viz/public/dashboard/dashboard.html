@@ -69,7 +69,9 @@
 
 <script>
 
-
+function sair() {
+    window.location = "../index.html"
+}
 
     function graficoBar() {
         var fkusuarioVar = sessionStorage.ID_USUARIO
@@ -391,7 +393,7 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                     resposta.forEach(item => {
-                        personalidade.innerHTML = item.PersonalidadeVencedora
+                        personalidade.innerHTML = item.UltimaPersonalidade
                         
                     });
 
