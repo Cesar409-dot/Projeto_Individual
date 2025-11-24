@@ -282,47 +282,43 @@ CREATE VIEW vwKpiBar AS
 FROM vwGlobal;
 
     
-    CREATE VIEW vwKpiBar AS
-SELECT
+    ALTER VIEW vwKpiBar AS
+SELECT 
     CASE
-        WHEN Soluco >= Astrid
-         AND Soluco >= Melequento
-         AND Soluco >= Perna_de_Peixe
-         AND Soluco >= Cabeca_Dura
-         AND Soluco >= Cabeca_Quente
-            THEN 'Soluço'
+        WHEN soluco >= astrid 
+         AND soluco >= melequento 
+         AND soluco >= pernadepeixe 
+         AND soluco >= cabecadura 
+         AND soluco >= cabecaquente THEN 'Soluço'
 
-        WHEN Astrid >= Soluco
-         AND Astrid >= Melequento
-         AND Astrid >= Perna_de_Peixe
-         AND Astrid >= Cabeca_Dura
-         AND Astrid >= Cabeca_Quente
-            THEN 'Astrid'
+        WHEN astrid >= soluco 
+         AND astrid >= melequento 
+         AND astrid >= pernadepeixe 
+         AND astrid >= cabecadura 
+         AND astrid >= cabecaquente THEN 'Astrid'
 
-        WHEN Melequento >= Soluco
-         AND Melequento >= Astrid
-         AND Melequento >= Perna_de_Peixe
-         AND Melequento >= Cabeca_Dura
-         AND Melequento >= Cabeca_Quente
-            THEN 'Melequento'
+        WHEN melequento >= soluco 
+         AND melequento >= astrid 
+         AND melequento >= pernadepeixe 
+         AND melequento >= cabecadura 
+         AND melequento >= cabecaquente THEN 'Melequento'
 
-        WHEN Perna_de_Peixe >= Soluco
-         AND Perna_de_Peixe >= Astrid
-         AND Perna_de_Peixe >= Melequento
-         AND Perna_de_Peixe >= Cabeca_Dura
-         AND Perna_de_Peixe >= Cabeca_Quente
-            THEN 'Perna-de-Peixe'
+        WHEN pernadepeixe >= soluco 
+         AND pernadepeixe >= astrid 
+         AND pernadepeixe >= melequento 
+         AND pernadepeixe >= cabecadura 
+         AND pernadepeixe >= cabecaquente THEN 'Perna-de-Peixe'
 
-        WHEN Cabeca_Dura >= Soluco
-         AND Cabeca_Dura >= Astrid
-         AND Cabeca_Dura >= Melequento
-         AND Cabeca_Dura >= Perna_de_Peixe
-         AND Cabeca_Dura >= Cabeca_Quente
-            THEN 'Cabeça-Dura'
+        WHEN cabecadura >= soluco 
+         AND cabecadura >= astrid 
+         AND cabecadura >= melequento 
+         AND cabecadura >= pernadepeixe 
+         AND cabecadura >= cabecaquente THEN 'Cabeça-Dura'
 
         ELSE 'Cabeça-Quente'
     END AS PersonagemVencedor
-FROM vwPersona
+FROM resposta
+ORDER BY idresposta DESC
 LIMIT 1;
 
 SELECT * FROM vwKpiBar;
@@ -331,47 +327,43 @@ SELECT * FROM vwKpiBar;
 
 
 ALTER VIEW vwKpiRadar AS
-SELECT
+SELECT 
     CASE
-        WHEN Soluco >= Astrid
-         AND Soluco >= Melequento
-         AND Soluco >= Perna_de_Peixe
-         AND Soluco >= Cabeca_Dura
-         AND Soluco >= Cabeca_Quente
-            THEN 'Inovador'
+        WHEN soluco >= astrid 
+         AND soluco >= melequento 
+         AND soluco >= pernadepeixe 
+         AND soluco >= cabecadura 
+         AND soluco >= cabecaquente THEN 'Inovador'
 
-        WHEN Astrid >= Soluco
-         AND Astrid >= Melequento
-         AND Astrid >= Perna_de_Peixe
-         AND Astrid >= Cabeca_Dura
-         AND Astrid >= Cabeca_Quente
-            THEN 'Determinação'
+        WHEN astrid >= soluco 
+         AND astrid >= melequento 
+         AND astrid >= pernadepeixe 
+         AND astrid >= cabecadura 
+         AND astrid >= cabecaquente THEN 'Determinação'
 
-        WHEN Melequento >= Soluco
-         AND Melequento >= Astrid
-         AND Melequento >= Perna_de_Peixe
-         AND Melequento >= Cabeca_Dura
-         AND Melequento >= Cabeca_Quente
-            THEN 'Sarcarsmo'
+        WHEN melequento >= soluco 
+         AND melequento >= astrid 
+         AND melequento >= pernadepeixe 
+         AND melequento >= cabecadura 
+         AND melequento >= cabecaquente THEN 'Sarcasmo'
 
-        WHEN Perna_de_Peixe >= Soluco
-         AND Perna_de_Peixe >= Astrid
-         AND Perna_de_Peixe >= Melequento
-         AND Perna_de_Peixe >= Cabeca_Dura
-         AND Perna_de_Peixe >= Cabeca_Quente
-            THEN 'Sábio'
+        WHEN pernadepeixe >= soluco 
+         AND pernadepeixe >= astrid 
+         AND pernadepeixe >= melequento 
+         AND pernadepeixe >= cabecadura 
+         AND pernadepeixe >= cabecaquente THEN 'Sábio'
 
-        WHEN Cabeca_Dura >= Soluco
-         AND Cabeca_Dura >= Astrid
-         AND Cabeca_Dura >= Melequento
-         AND Cabeca_Dura >= Perna_de_Peixe
-         AND Cabeca_Dura >= Cabeca_Quente
-            THEN 'Impulsivo'
+        WHEN cabecadura >= soluco 
+         AND cabecadura >= astrid 
+         AND cabecadura >= melequento 
+         AND cabecadura >= pernadepeixe 
+         AND cabecadura >= cabecaquente THEN 'Impulsivo'
 
         ELSE 'Arrogante'
-    END AS PersonagemVencedor
-FROM vwPersona 
-ORDER BY personagemVencedor DESC
+    END AS UltimaPersonalidade
+FROM resposta
+ORDER BY idresposta DESC
 LIMIT 1;
-
+SELECT * FROM vwPersona; 
 SELECT * FROM vwKpiRadar;
+
