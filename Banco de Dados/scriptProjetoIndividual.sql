@@ -77,7 +77,6 @@ SELECT
      LIMIT 1) AS 'Cabeça-Quente'
 
 FROM resposta AS r
-WHERE r.fkusuario = 1
 ORDER BY r.fkquiz DESC
 LIMIT 1;
 	SELECT * FROM vwResultado;
@@ -331,7 +330,7 @@ SELECT * FROM vwKpiBar;
 
 
 
-CREATE VIEW vwKpiRadar AS
+ALTER VIEW vwKpiRadar AS
 SELECT
     CASE
         WHEN Soluco >= Astrid
@@ -371,7 +370,8 @@ SELECT
 
         ELSE 'Arrogante'
     END AS PersonagemVencedor
-FROM vwPersona
+FROM vwPersona 
+ORDER BY personagemVencedor DESC
 LIMIT 1;
 
 SELECT * FROM vwKpiRadar;
