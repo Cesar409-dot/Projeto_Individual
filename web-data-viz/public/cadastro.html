@@ -213,11 +213,10 @@
             msg3.innerHTML = "As senhas não coincidem";
             temErro = true;
         }
-
         if (!temErro) {
             alert("Cadastro efetuado com sucesso!! Agora faça seu login!!");
             window.location.href = "login.html";
-        }
+        
 
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -248,6 +247,7 @@
             });
 
         return false;
+    }
     }
 
     function mostrarValidacao() {

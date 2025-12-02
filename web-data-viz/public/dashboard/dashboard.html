@@ -223,7 +223,7 @@ function sair() {
                     });
 
                     new Chart(ctxradar, {
-                        type: 'radar',
+                        type: 'bar',
                         data: {
                             labels: [
                                 'Inovador',
@@ -247,6 +247,10 @@ function sair() {
                         },
                         options: {
                             responsive: true,
+                            maintainAspectRatio: false,
+                            layout:{
+                                padding:20
+                            },
                             elements: {
                                 line: {
                                     borderWidth: 3
@@ -313,11 +317,10 @@ function sair() {
 
 
                     new Chart(ctxpie, {
-                        type: 'pie',
+                        type: 'bar',
                         data: {
                             labels: ['Soluço', 'Astrid', 'Melequento', 'Perna-de-peixe', 'Cabeça-Dura', 'Cabeça-Quente'],
                             datasets: [{
-                                label: 'Aparições',
                                 data: [soluco, astrid, melequento, pernadepeixe, cabecadura, cabecaquente],
                                 backgroundColor: [
                                     '#FCD77C',
@@ -331,7 +334,9 @@ function sair() {
                             }]
                         },
                         options: {
-                            responsive: true
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            indexAxis: 'y'
                         }
                     });
 
